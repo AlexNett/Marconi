@@ -4,7 +4,7 @@
 	//init();
 	//
 	$host = "localhost";
-	$db = "project";
+	$db = "quintab_project";
 	$user = "quintab";
 	$password = "HA45@BMV";
 			
@@ -15,8 +15,8 @@
 	//
 	//example of usage
 	//
-	$result = $conn->prepare( "SELECT sessione.idsessione FROM sessione" );
+	$result = $conn->prepare( "SELECT sessione.idsessione FROM sessione ORDER BY sessione.idsessione DESC LIMIT 1" );
 	$result->execute();
-	$row = $result->lastInsertId();
-	echo $row;
+	$row = $result->fetch();
+	echo $row[0];
 ?>
