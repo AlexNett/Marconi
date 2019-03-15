@@ -11,11 +11,9 @@ $(function(){
 	$.ajax({
 		type: "GET",
 		dataType: "json",
-		url: "../model/data.php",
+		url: "../model/currentSession.php",
 	success: function(data) { 
-		data.forEach(function(x){
-			console.log(x);
-		})
+		console.log(data);
 	},
 	error: function(error) {
 		alert(error);
