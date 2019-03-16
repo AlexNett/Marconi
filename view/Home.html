@@ -5,6 +5,8 @@
 	<script src="../control/$.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../bin/css/main.css">
+	
+	<title>Home</title>
   </head>
   <body>
 
@@ -13,10 +15,16 @@
 </header>
 
 <div id="page">
-<form>
-<input name="User" placeholder="Username"><br>
-<input name="User" placeholder="Password" type="password"><br>
+<div id="info">
+<p id="name"></p>
+<p id="surname"></p>
+<p id="email"></p>
+</div>
+<form action="login.php" method="post">
+<input name="email" placeholder="Email"><br>
+<input name="password" placeholder="Password" type="password"><br>
 <button type="submit" class="btnn">Login</button>
+<button type="submit" formaction="logout.php">Logout</button>
 </form>
 <footer id="footer">Made by ITISMeucci</footer>
 </div>

@@ -5,18 +5,19 @@
 	//
 	$host = "localhost";
 	$db = "quintab_project";
-	$user = "quintab";
-	$password = "HA45@BMV";
+	$user = "root";
+	$password = "";
 			
 	try { $conn = new PDO("mysql:host=$host;dbname=$db", $user, $password); }
 	catch(PDOException $e) { echo $e->getMessage(); }
 	
 
 	//
-	//example of usage
+	// Current Logged
 	//
-	$result = $conn->prepare( "SELECT sessione.idsessione FROM sessione ORDER BY sessione.idsessione DESC LIMIT 1" );
-	$result->execute();
+	$logged = $_COOKIE["logged"];
+	$result = $conn->prepare( "SELECT * FROM docente WHERE iddocente = ?" );
+	$result->execute([$logged]);
 	$row = $result->fetch();
-	echo $row[0];
+	echo json_encode($row);
 ?>
