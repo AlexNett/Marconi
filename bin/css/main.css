@@ -1,19 +1,20 @@
 *{
-	font-family: 'EB Garamond', serif;
+	font-family: verdana;
+	font-size:110%;
 }
 
 #header{
-	text-align: center;
-	padding: 12px;
+	padding: 22px;
 	background-color: #ffae19;
 	color: white;
 	-webkit-box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
 	-moz-box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
 	box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
-	margin-bottom: 75px;
+	margin-bottom: 50px;
 }
 
 #page{
+	text-align: center;
 	border: 1px solid #fff;
 	margin: 0 auto;
 	width: 75%;
@@ -21,6 +22,30 @@
 	-moz-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
 	box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
 	padding: 25px;
+	border-radius: 15px;;
+}
+
+input{
+	margin: 2%;
+	border: transparent;
+	border-bottom: 2px solid #eee;
+	outline: none;
+	padding: 1.5% 5%;
+	transition: 0.25s;
+}
+
+input:focus{
+	padding: 1.5% 10%;
+	transition: 0.25s;
+	border-bottom: 2px solid #ffae19;
+}
+
+#content{
+	margin-top: 5%;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	margin-bottom: 5%;
 }
 
 #footer{
@@ -29,10 +54,23 @@
 }
 
 .btnn{
+	background-color: transparent;
+	border: 3px solid #ffae19;
+	padding: 1.5% 5%;
+	margin: 2%;
+	margin-top: 8%;
+	border-radius: 60px;
+	font-family: sans-serif;
+	
+}
+
+.btnn:hover{
+	background-color: #ffae19;
+	color: white;
+	transition: 0.25s;
 }
 
 a{
-	font-family: 'EB Garamond', serif;
 	text-shadow: 1px 1px #bb0000;
 }
 

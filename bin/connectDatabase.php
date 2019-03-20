@@ -4,8 +4,8 @@
 	//
 	$host = "localhost";
 	$db = "quintab_project";
-	$user = "quintab";
-	$password = "HA45@BMV";
+	$user = "root";
+	$password = "";
 	//$user = "quintab";
 	//$password = "HA45@BMV";
 			
