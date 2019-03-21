@@ -13,10 +13,10 @@
 		$row = $result->fetch();
 		switch($row[0]){
 			case "1":
-			$array = ["docenti","studenti","classi"];
+			$array = ["Docenti","Studenti","Classi"];
 			break;
 			case "2":
-			$array = ["sessione","history"];
+			$array = ["Sessione","History"];
 			break;
 			default:
 			$array = [""];
@@ -24,7 +24,7 @@
 		}
 		
 		foreach ($array as $value) {
-			echo "<td><a href=".$value.".php>".$value."</a></td>";
+			echo "<td><a href=".strtolower($value).".php><span>/</span>".$value."</a></td>";
 		}
 	
 	}

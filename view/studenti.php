@@ -11,8 +11,8 @@ include "../model/allowAdmin.php";
   <body>
 
 <header id="header">
-<a href="home.php">Home</a>
-<table><tr>
+<table id="headerTable"><tr>
+<td><a href="home.php">Home</a></td>
 <?php
 include "../model/header.php";
 ?>
@@ -26,6 +26,6 @@ include "../model/header.php";
 </div>
 </div>
 
-	<script src="../control/main.js"></script>
+	<script src="../controller/main.js"></script>
   </body>
 </html>
