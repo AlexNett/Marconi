@@ -1,3 +1,8 @@
+body{
+	padding: 0;
+	margin: 0;
+}
+
 *{
 	font-family: verdana;
 	font-size:110%;
@@ -58,7 +63,7 @@ input:focus{
 	border: 3px solid #ffae19;
 	padding: 1.5% 5%;
 	margin: 2%;
-	margin-top: 8%;
+	margin-top: 50px;
 	border-radius: 60px;
 	font-family: sans-serif;
 	
