@@ -23,13 +23,14 @@ include "../model/loggedInfo.php";
 </div>
 <!-- MAIN HTML START -->
 <form action="login.php" method="post">
-<input name="email" placeholder="Email"><br>
-<input name="password" placeholder="Password" type="password"><br>
 <?php
 if(!isset($_COOKIE["logged"])){
+echo "<input name='email' placeholder='Email'><br>";
+echo "<input name='password' placeholder='Password' type='password'><br>";
 echo "<button type='submit' class='btnn'>Login</button>";
 } else {
 echo "<button type='submit' class='btnn' formaction='logout.php'>Logout</button>";
+
 }
 ?>
 

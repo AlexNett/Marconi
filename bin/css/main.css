@@ -4,19 +4,18 @@ body{
 }
 
 *{
-	font-family: verdana;
-	font-size:110%;
+	font-family: 'EB Garamond';
+	font-size:105%;
 }
 
 #header{
-	padding: 22px;
+	padding: 5px;
 	background-color: #ffae19;
 	color: white;
 	-webkit-box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
 	-moz-box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
 	box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
 	margin-bottom: 50px;
-	height: 50px;
 }
 
 #page{
@@ -66,7 +65,7 @@ input:focus{
 	margin: 2%;
 	margin-top: 50px;
 	border-radius: 60px;
-	font-family: sans-serif;
+	font-family: 'EB Garamond';
 	
 }
 
@@ -93,4 +92,24 @@ input:focus{
 	border-bottom: 2px solid white;
 	text-shadow: 2px 2px 3px #ddd;
 	transition: 0.25s;
+}
+
+#add td{
+	width:100%;
+}
+
+#add input {
+ margin: 5px 15px;
+}
+
+#add button {
+position: relative;
+left: -700%;
+height: 60px;
+width: 600%;
+}
+
+.fas
+{
+	margin-left: 4%;
 }
