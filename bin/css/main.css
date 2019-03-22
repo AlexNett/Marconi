@@ -4,13 +4,13 @@ body{
 }
 
 *{
-	font-family: 'EB Garamond';
-	font-size:105%;
+	font-family: verdana;
+	font-size:110%;
 }
 
 #header{
-	padding: 5px;
-	background-color: #ffae19;
+	padding: 17px;
+	background-color: #7ccc04;
 	color: white;
 	-webkit-box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
 	-moz-box-shadow: 0px 0px 26px 0px rgba(112,112,112,1);
@@ -18,11 +18,16 @@ body{
 	margin-bottom: 50px;
 }
 
+.logo{
+	width: 70%;
+	height: 70%;
+}
+
 #page{
 	text-align: center;
 	border: 1px solid #fff;
 	margin: 0 auto;
-	width: 75%;
+	width: 45%;
 	-webkit-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
 	-moz-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
 	box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
@@ -42,7 +47,7 @@ input{
 input:focus{
 	padding: 1.5% 10%;
 	transition: 0.25s;
-	border-bottom: 2px solid #ffae19;
+	border-bottom: 2px solid #7ccc04;
 }
 
 #content{
@@ -59,38 +64,38 @@ input:focus{
 }
 
 .btnn{
-	background-color: transparent;
-	border: 3px solid #ffae19;
+	background-color: #7ccc04;
+	border: 3px solid #7ccc04;
 	padding: 1.5% 5%;
 	margin: 2%;
 	margin-top: 50px;
 	border-radius: 60px;
-	font-family: 'EB Garamond';
-	
+	font-family: sans-serif;
+	color: white;
 }
 
 .btnn:hover{
-	background-color: #ffae19;
+	background-color: #acec4c;
+	border: 3px solid #acec4c;
 	color: white;
 	transition: 0.25s;
+	color: black;
 }
 
 #headerTable a:link, a:visited{
 	font-size: 125%;
-	color: #eee;
+	color: 	#f8f8ff	;
 	text-decoration: none;
-	border-bottom: 0px solid white;
+	border-bottom: 0px solid #808080	;
 	transition: 0.25s;
-	text-shadow: 1px 1px 1px #aaa;
+	text-shadow: 1px 1px 1px #808080	;
 }
 
 #headerTable a:hover{
 
 	font-size: 125%;
-	color: #fff;
+	color: #076607;
 	text-decoration: none;
-	border-bottom: 2px solid white;
-	text-shadow: 2px 2px 3px #ddd;
 	transition: 0.25s;
 }
 
