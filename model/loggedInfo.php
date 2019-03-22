@@ -13,9 +13,9 @@
 		$result->execute([$logged]);
 		$row = $result->fetch();
 		
-		echo $row["nome"]."<br>";
-		echo $row["cognome"]."<br>";
-		echo $row["email"]."<br>";
+		echo '<b>Nome:</b>  '.$row["nome"]."<br>";
+		echo '<b>Cognome:</b>  '.$row["cognome"]."<br>";
+		echo '<b>Email:</b> '.$row["email"]."<br>";
 	
 	}
 ?>
