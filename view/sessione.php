@@ -12,6 +12,7 @@ include "../model/allowTeacher.php";
 
 <header id="header">
 <table id="headerTable"><tr>
+<td><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></td>
 <td><a href="home.php">Home</a></td>
 <?php
 include "../model/header.php";
@@ -19,7 +20,7 @@ include "../model/header.php";
 </table></tr>
 </header>
 
-<div id="page">
+<div class="page">
 <!-- MAIN HTML START -->
 <!-- MAIN HTML END -->
 <footer id="footer">Made by ITISMeucci</footer>

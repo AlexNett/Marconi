@@ -8,6 +8,7 @@
 
 <header id="header">
 <table id="headerTable"><tr>
+<td><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></td>
 <td><a href="home.php">Home</a></td>
 <?php
 include "../model/header.php";
@@ -15,21 +16,21 @@ include "../model/header.php";
 </table></tr>
 </header>
 
-<div id="page">
+<div class="page">
 <div id="info">
 <?php
 include "../model/loggedInfo.php";
 ?>
 </div>
 <!-- MAIN HTML START -->
-<form action="login.php" method="post">
+<form action="../controller/login.php" method="post">
 <?php
 if(!isset($_COOKIE["logged"])){
 echo "<input name='email' placeholder='Email'><br>";
 echo "<input name='password' placeholder='Password' type='password'><br>";
 echo "<button type='submit' class='btnn'>Login</button>";
 } else {
-echo "<button type='submit' class='btnn' formaction='logout.php'>Logout</button>";
+echo "<button type='submit' class='btnn' formaction='../controller/logout.php'>Logout</button>";
 
 }
 ?>

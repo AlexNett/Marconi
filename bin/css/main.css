@@ -5,7 +5,7 @@ body{
 
 *{
 	font-family: verdana;
-	font-size:110%;
+	font-size: 105%;
 }
 
 #header{
@@ -23,16 +23,16 @@ body{
 	height: 70%;
 }
 
-#page{
+.page{
 	text-align: center;
 	border: 1px solid #fff;
-	margin: 0 auto;
+	margin: 5 auto;
 	width: 45%;
 	-webkit-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
 	-moz-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
 	box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
-	padding: 25px;
-	border-radius: 15px;;
+	padding: 50px;
+	border-radius: 15px;
 }
 
 input{
@@ -99,8 +99,10 @@ input:focus{
 	transition: 0.25s;
 }
 
-#add td{
-	width:100%;
+#add table{
+	width: 100%;
+	table-layout: fixed;
+	text-align: center;
 }
 
 #add input {
@@ -108,13 +110,56 @@ input:focus{
 }
 
 #add button {
-position: relative;
-left: -700%;
-height: 60px;
-width: 600%;
 }
 
 .fas
 {
 	margin-left: 4%;
+}
+
+#dump{
+	width:100%;
+}
+
+
+#dump td{
+	padding: 5px;
+	text-align: center;
+}
+
+#dump tr:nth-child(even) {
+	background-color: #f8ffef;
+}
+
+#dump tr:nth-child(odd) {
+	background-color: #e8ffc6;
+}
+
+#dump tr{
+	transition: 0.15s;
+}
+
+#dump tr:hover {
+	background-color: #cdff84;
+	transition: 0.15s;
+}
+
+#dump th {
+	background-color: #7ccc04;
+	padding: 10px;
+	color: white;
+	border-radius: 15px 0px 15px 0px;
+}
+
+#pageHide{
+	position: fixed; height: 100%; width: 100%; top:0; left: 0; background: rgba(255,255,255,0.7); z-index:9999;
+	text-align: center;
+}
+
+#pageHide div{
+	font-size: 175%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

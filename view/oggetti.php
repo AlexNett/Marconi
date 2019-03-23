@@ -20,7 +20,7 @@ include "../model/header.php";
 </table></tr>
 </header>
 
-<div class="page">
+<div id="page">
 <!-- MAIN HTML START -->
 <form id='add' method='post' action=''>
 <table>

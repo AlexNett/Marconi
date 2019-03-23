@@ -13,7 +13,7 @@
 		$row = $result->fetch();
 		switch($row[0]){
 			case "1":
-			$array = ["Docenti","Studenti","Classi"];
+			$array = ["Docenti","Studenti","Classi","Torni","Oggetti"];
 			break;
 			case "2":
 			$array = ["Sessione","History"];

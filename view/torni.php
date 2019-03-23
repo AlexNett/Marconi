@@ -9,6 +9,13 @@ include "../model/allowAdmin.php";
 	<title>Docenti</title>
   </head>
   <body>
+  
+  <div id="pageHide">
+  <div>
+  <p>Working...</p>
+  <img src="../bin/resources/Marconi Logo.png"></img>
+  </div>
+  </div>
  
 <header id="header">
 <table id="headerTable"><tr>
@@ -20,23 +27,33 @@ include "../model/header.php";
 </table></tr>
 </header>
 
-<div class="page">
 <!-- MAIN HTML START -->
-<form id='add' method='post' action=''>
-<table>
+<div class="page">
 
-<tr><td><input type='text' name='name' placeholder = 'Nome'></td><td rowspan="4"><button class="btnn" type="submit">Aggiungi Docente <i class="fas fa-user-plus"></i></button></td></tr>
-<tr><td><input type='text' name='surname' placeholder = 'Cognome'></td></tr>
-<tr><td><input type='text' name='email' placeholder = 'Email'></td></tr>
-<tr><td><input type='text' name='password' placeholder = 'Password'></td></tr>
-</table>
+<form method="post" enctype="multipart/form-data" action="../controller/torni_ADD.php">
+<input onchange="Preview(this.files)" id="data" name="data" class="btnn" type='file'/><br>
+<button onclick="hide()" type="submit" name="submit" class="btnn" >Aggiungi Tornio<i class="fas fa-user-plus"></i></button>
 </form>
 
-<!-- MAIN HTML END -->
+
+<div id="previewFile" style="text-align: left;">
+<img id="preview" ></img>
+<p id="filename"></p>
+<p id="filetype"></p>
+<p id="filesize"></p>
+</div>
+
+</div>
+
+<div class="page">
+<table id="dump">
+</table>
 <footer id="footer">Made by ITISMeucci</footer>
 </div>
 
+<!-- MAIN HTML END -->
 
+	<script src="../controller/torni.js"></script>
 	<script src="../controller/main.js"></script>
   </body>
 </html>
