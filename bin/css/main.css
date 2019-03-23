@@ -4,8 +4,8 @@ body{
 }
 
 *{
-	font-family: verdana;
-	font-size: 105%;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size : 100%;
 }
 
 #header{
@@ -42,12 +42,14 @@ input{
 	outline: none;
 	padding: 1.5% 5%;
 	transition: 0.25s;
+	font-size : 120%;
 }
 
 input:focus{
 	padding: 1.5% 10%;
 	transition: 0.25s;
 	border-bottom: 2px solid #7ccc04;
+	font-size : 120%;
 }
 
 #content{
@@ -60,7 +62,8 @@ input:focus{
 
 #footer{
 	text-align: center;
-	color: #dedede;
+	color: rgb(180, 180, 180);
+	font-size : 120%;
 }
 
 .btnn{
@@ -70,16 +73,17 @@ input:focus{
 	margin: 2%;
 	margin-top: 50px;
 	border-radius: 60px;
-	font-family: sans-serif;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size : 120%;
 	color: white;
 }
 
 .btnn:hover{
-	background-color: #acec4c;
-	border: 3px solid #acec4c;
+	background-color: #7ccc04;
+	border: 3px solid #7ccc04;
 	color: white;
 	transition: 0.25s;
-	color: black;
+	color: #045304;
 }
 
 #headerTable a:link, a:visited{
@@ -94,7 +98,7 @@ input:focus{
 #headerTable a:hover{
 
 	font-size: 125%;
-	color: #076607;
+	color: #045304;
 	text-decoration: none;
 	transition: 0.25s;
 }
@@ -107,9 +111,15 @@ input:focus{
 
 #add input {
  margin: 5px 15px;
+ font-size: 120%;
 }
 
 #add button {
+position: relative;
+left: -470%;
+height: 60px;
+width: 400%;
+font-size: 120%;
 }
 
 .fas
