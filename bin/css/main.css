@@ -110,17 +110,61 @@ input:focus{
 #add input {
  margin: 5px 15px;
  font-size: 120%;
+
+}
+
+#add input:focus{
+	padding: 2.5% 8%;
+	transition: 0.25s;
+	border-bottom: 2px solid #7ccc04;
+	font-size : 120%;
 }
 
 #add button {
-position: relative;
-left: -470%;
-height: 60px;
-width: 400%;
-font-size: 120%;
+	position: relative;
+	left: -400%;
+	height: 60px;
+	width: 400%;
+	font-size: 120%;
 }
 
-.fas
+#eye-btn
 {
 	margin-left: 4%;
+	cursor: pointer;
 }
+
+.fa-eye-clicked:before {
+    content: "\f070";
+}
+
+#tabledoc
+{
+	display: flex;
+    justify-content: center;
+    margin: 3%;
+}
+
+#tabledoc table
+{
+	width: 80%;
+    border: 1px solid #fff;;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.btn-del a
+{
+	margin-left: 2%;
+	cursor: pointer;
+}
+
+.btn-del i
+{
+	cursor: pointer;
+}
+
