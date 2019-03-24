@@ -19,7 +19,7 @@ include "../model/allowAdmin.php";
  
 <header id="header">
 <table id="headerTable"><tr>
-<td><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></td>
+<td><a href="home.php"><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></a></td>
 <td><a href="home.php">Home</a></td>
 <?php
 include "../model/header.php";
@@ -33,6 +33,7 @@ include "../model/header.php";
 <form method="post" enctype="multipart/form-data" action="../controller/torni_ADD.php">
 <input onchange="Preview(this.files)" id="data" name="data" class="btnn" type='file'/><br>
 <button onclick="hide()" type="submit" name="submit" class="btnn" >Aggiungi Tornio<i class="fas fa-user-plus"></i></button>
+<br><br>
 <footer id="footer">Made by ITISMeucci</footer>
 </form>
 

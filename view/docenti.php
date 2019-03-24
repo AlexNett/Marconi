@@ -12,7 +12,7 @@ include "../model/allowAdmin.php";
 <body>
   <header id="header">
     <table id="headerTable"><tr>
-    <td><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></td>
+    <td><a href="home.php"><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></a></td>
         <td><a href="home.php">Home</a></td>
       <?php
       include "../model/header.php";
@@ -22,7 +22,7 @@ include "../model/allowAdmin.php";
 
   <div id="page">
   <!-- MAIN HTML START -->
-  <form id='add' method='POST' action='docentiadd.php'>
+  <form id='add' method='POST' action='../controller/docentiadd.php'>
   <table>
   <tr><td><input type='text' name='nome' placeholder = 'Nome' size="15" required></td><td rowspan="4" ><button class="btnn" type="submit">Aggiungi Docente <i class="fas fa-user-plus"></i></button></td></tr>
   <tr><td><input type='text' name='cognome' placeholder = 'Cognome' size="15" required></td></tr>
@@ -31,7 +31,7 @@ include "../model/allowAdmin.php";
   <span id="eye-btn" class="fa fa-fw fa-eye field-icon toggle-password" style="font-size: 18px;" onclick="setpass();"></span></td></tr>
   </table>
   </form>
-  
+  <br><br>
   <!-- MAIN HTML END --> 
   <footer id="footer">Made by ITISMeucci</footer>
   </div>

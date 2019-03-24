@@ -21,6 +21,7 @@ body{
 .logo{
 	width: 70%;
 	height: 70%;
+	cursor: pointer;
 }
 
 #page{
@@ -76,6 +77,7 @@ input:focus{
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	font-size : 120%;
 	color: white;
+	cursor: pointer;
 }
 
 .btnn:hover{
@@ -132,10 +134,21 @@ input:focus{
 {
 	margin-left: 4%;
 	cursor: pointer;
+	color: grey;
 }
 
 .fa-eye-clicked:before {
-    content: "\f070";
+	content: "\f070";
+}
+
+.fa-user-plus:before {
+    content: "\f234";
+	margin-left: 4;
+}
+
+.fa-users:before {
+	content: "\f0c0";
+	margin-left: 4;
 }
 
 #tabledoc
@@ -213,4 +226,42 @@ input:focus{
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+#tablestud
+{
+	display: flex;
+    justify-content: center;
+    margin: 3%;
+}
+
+#tablestud table
+{
+	width: 80%;
+    border: 1px solid #fff;;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+#tableclas
+{
+	display: flex;
+    justify-content: center;
+    margin: 3%;
+}
+
+#tableclas table
+{
+	width: 80%;
+    border: 1px solid #fff;;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    box-shadow: 0px 0px 26px 0px rgba(194,194,194,1);
+    padding: 25px;
+    border-radius: 15px;
 }
