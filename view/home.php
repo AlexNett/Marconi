@@ -8,6 +8,7 @@
 
 <header id="header">
 <table id="headerTable"><tr>
+<td><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></td>
 <td><a href="home.php">Home</a></td>
 <?php
 include "../model/header.php";
