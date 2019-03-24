@@ -28,16 +28,17 @@ include "../model/header.php";
 </header>
 
 <!-- MAIN HTML START -->
-<div class="page">
+<div id="page">
 
 <form method="post" enctype="multipart/form-data" action="../controller/torni_ADD.php">
 <input onchange="Preview(this.files)" id="data" name="data" class="btnn" type='file'/><br>
 <button onclick="hide()" type="submit" name="submit" class="btnn" >Aggiungi Tornio<i class="fas fa-user-plus"></i></button>
+<footer id="footer">Made by ITISMeucci</footer>
 </form>
 
 
 <div id="previewFile" style="text-align: left;">
-<img id="preview" ></img>
+<img id="preview" >
 <p id="filename"></p>
 <p id="filetype"></p>
 <p id="filesize"></p>
@@ -45,10 +46,9 @@ include "../model/header.php";
 
 </div>
 
-<div class="page">
+<div id="page">
 <table id="dump">
 </table>
-<footer id="footer">Made by ITISMeucci</footer>
 </div>
 
 <!-- MAIN HTML END -->
