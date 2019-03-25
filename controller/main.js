@@ -15,5 +15,3 @@ function setpass() {
         x.type = "password";
     }
   }
-
-  document.querySelector('input').focus();

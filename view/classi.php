@@ -32,8 +32,8 @@ include "../model/allowAdmin.php";
     <!-- MAIN HTML END -->
     <footer id="footer">Made by ITISMeucci</footer>
     </div>
-    <div id = 'tableclas'>
-      <table>
+    <div id = 'tableDiv'>
+      <table id="dump">
         <tr>
           <th>Id Classe</th>
           <th>Classe</th>

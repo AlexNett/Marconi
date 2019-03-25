@@ -30,7 +30,7 @@ include "../model/header.php";
 <!-- MAIN HTML START -->
 <div id="page">
 
-<form method="post" enctype="multipart/form-data" action="../controller/torni_ADD.php">
+<form method="post" enctype="multipart/form-data" action="../controller/ADD_torni.php">
 <input onchange="Preview(this.files)" id="data" name="data" class="btnn" type='file'/><br>
 <button onclick="hide()" type="submit" name="submit" class="btnn" >Aggiungi Tornio<i class="fas fa-user-plus"></i></button>
 <br><br>
@@ -47,7 +47,7 @@ include "../model/header.php";
 
 </div>
 
-<div id="page">
+<div id="tableDiv">
 <table id="dump">
 </table>
 </div>

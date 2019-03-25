@@ -5,7 +5,7 @@
         $return = $stm->execute([$_POST['nome'],$_POST['cognome'],'2',$_POST['email'],$_POST['password']]);
         
         if($return){
-            header("Location: docenti.php");
+            header("Location: ../view/docenti.php");
 
         }
     }
@@ -14,4 +14,15 @@
         echo $e->getMessage();
         exit();
     }
+	
+	header("Location: ../view/docenti.php");
 ?>
+
+
+<html>
+</head>
+</head>
+<body>
+Adding...
+</body>
+</html>

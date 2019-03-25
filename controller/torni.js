@@ -23,12 +23,6 @@ xhttp.onreadystatechange = function() {
 		th.appendChild(node);
 		row.appendChild(th);
 		
-		var th = document.createElement("th");
-		var icon = document.createElement("i");
-		icon.className = "fas fa-user-minus";
-		th.appendChild(icon);
-		row.appendChild(th);
-		
 		table.appendChild(row);
 		
 		for (var key in objectResponse) {
@@ -62,7 +56,7 @@ xhttp.onreadystatechange = function() {
 };
 
 function ReloadDump(){
-	xhttp.open("GET", "../model/dump_torni.php", true);
+	xhttp.open("GET", "../model/DUMP_torni.php", true);
 	xhttp.send();
 }
 
@@ -100,11 +94,15 @@ function hide(){
 	document.getElementById("pageHide").style.display = 'block';
 }
 
+var xhttp2 = new XMLHttpRequest();
+xhttp2.onreadystatechange = function() {
+	ReloadDump();
+}
 function Remove(){
-	var xhttp2 = new XMLHttpRequest();
-	xhttp2.open("POST", "../controller/torni_REMOVE.php", false);
+	this.parentElement.style.opacity = "0.2";
+	xhttp2.open("POST", "../controller/REMOVE_torni.php", true);
 	xhttp2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp2.setRequestHeader("Accept","application/json");
 	xhttp2.send("id="+ this.data +"");
-	ReloadDump();
 }
+

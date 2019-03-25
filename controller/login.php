@@ -14,7 +14,7 @@
 	//
 	setcookie("logged", $row["iddocente"], time() + (86400 * 30), "/"); // 86400 = 1 day
 	
-	Header('Location: home.php');
+	Header('Location: ../view/home.php');
 ?>
 
 <html>

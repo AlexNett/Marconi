@@ -25,7 +25,7 @@ include "../model/header.php";
 <form id='add' method='post' action=''>
 <table>
 
-<tr><td><input type='text' name='name' placeholder = 'Nome'></td><td rowspan="4"><button class="btnn" type="submit">Aggiungi Docente <i class="fas fa-user-plus"></i></button></td></tr>
+<tr><td><input type='text' name='name' placeholder = 'Nome'></td><td rowspan="4"><button class="btnn" type="submit">Aggiungi Oggetto <i class="fas fa-user-plus"></i></button></td></tr>
 <tr><td><input type='text' name='surname' placeholder = 'Cognome'></td></tr>
 <tr><td><input type='text' name='email' placeholder = 'Email'></td></tr>
 <tr><td><input type='text' name='password' placeholder = 'Password'></td></tr>

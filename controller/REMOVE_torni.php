@@ -5,8 +5,6 @@
 	$result = $conn->prepare( "DELETE FROM macchina WHERE macchina.idmacchina = ?" );
 	$result->execute([$_POST['id']]);
 	
-	Header('Location: ../view/torni.php');
-	
 ?>
 
 <html>

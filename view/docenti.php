@@ -10,6 +10,14 @@ include "../model/allowAdmin.php";
 	<title>Docenti</title>
 </head>
 <body>
+
+<div id="pageHide">
+  <div>
+  <p>Working...</p>
+  <img src="../bin/resources/Marconi Logo.png">
+  </div>
+  </div>
+
   <header id="header">
     <table id="headerTable"><tr>
     <td><a href="home.php"><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></a></td>
@@ -22,7 +30,7 @@ include "../model/allowAdmin.php";
 
   <div id="page">
   <!-- MAIN HTML START -->
-  <form id='add' method='POST' action='../controller/docentiadd.php'>
+  <form onsubmit="hide()" id='add' method='POST' action='../controller/ADD_docenti.php'>
   <table>
   <tr><td><input type='text' name='nome' placeholder = 'Nome' size="15" required></td><td rowspan="4" ><button class="btnn" type="submit">Aggiungi Docente <i class="fas fa-user-plus"></i></button></td></tr>
   <tr><td><input type='text' name='cognome' placeholder = 'Cognome' size="15" required></td></tr>
@@ -35,68 +43,12 @@ include "../model/allowAdmin.php";
   <!-- MAIN HTML END --> 
   <footer id="footer">Made by ITISMeucci</footer>
   </div>
-  <div id = 'tabledoc'>
-    <table>
-      <tr>
-        <th>Id Docente</th>
-        <th>Nome</th>
-        <th>Cognome</th>
-        <th>Email</th>
-        <?php
-        tableDocenti();
-        ?>
+  <div id = 'tableDiv'>
+    <table id="dump">
     </table>
   </div>
 </body>
-<script type="text/javascript" src="../controller/main.js">
+	<script src="../controller/docenti.js"></script>
+	<script type="text/javascript" src="../controller/main.js">
 </script>
 </html>
-<?php
-
-  function tableDocenti() 
-  {
-    include "../bin/connectDatabase.php";
-    try{
-      $stm = $conn->prepare("SELECT iddocente,nome,cognome,email FROM docente");
-      $stm->execute();
-      $return = $stm->fetchAll(); 
-    }
-    catch(Exception $e)
-    {
-        echo $e->getMessage();
-        exit();
-    }
-    for($i=0; $i<sizeof($return);$i++)
-    {
-      if($i % 2 == 0 )
-      echo '<tr style="background-color: #7ccc04">';
-      else
-      echo '<tr>';
-      for($j=0;$j<4;$j++)
-      {
-        echo '<td>'.$return[$i][$j].'</td>';
-      }
-      echo '<td class = "btn-del"><i class="fas fa-user-edit"></i></td>';
-      echo '<td class ="btn-del"><i class="fas fa-user-times"></i></td></tr>';
-    }
-  }
-
-  /*function delete($id)
-  {
-    
-    try{
-      echo "DELETE FROM docente WHERE iddocente = ".$id;
-      $stm = $conn->prepare("DELETE FROM docente WHERE iddocente = ".$id );
-      $result = $stm->execute();
-      if($result)
-      {
-        header("Location: docenti.php");
-      }
-    }
-    catch(Exception $e)
-    {
-        echo $e->getMessage();
-        exit();
-    }
-  }*/
-?>  

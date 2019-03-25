@@ -2,7 +2,7 @@
 
 	setcookie("logged", "", time()-3600, "/");
 	
-	Header('Location: home.php');
+	Header('Location: ../view/home.php');
 	
 ?>
 
