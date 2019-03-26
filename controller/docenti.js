@@ -40,7 +40,7 @@ xhttp.onreadystatechange = function() {
 			
 			//id
 			var td = document.createElement("td");
-			td.onclick = Edit;
+			td.ondblclick = Edit;
 			td.data = objectResponse[key].iddocente
 			var node = document.createTextNode(objectResponse[key].iddocente);
 			td.appendChild(node);
@@ -48,7 +48,7 @@ xhttp.onreadystatechange = function() {
 			
 			//nome
 			var td = document.createElement("td");
-			td.onclick = Edit;
+			td.ondblclick = Edit;
 			td.data = "nome"
 			var node = document.createTextNode(objectResponse[key].nome);
 			td.appendChild(node);
@@ -56,7 +56,7 @@ xhttp.onreadystatechange = function() {
 			
 			//cognome
 			var td = document.createElement("td");
-			td.onclick = Edit;
+			td.ondblclick = Edit;
 			td.data = "cognome";
 			var node = document.createTextNode(objectResponse[key].cognome);
 			td.appendChild(node);
@@ -64,7 +64,7 @@ xhttp.onreadystatechange = function() {
 			
 			//email
 			var td = document.createElement("td");
-			td.onclick = Edit;
+			td.ondblclick = Edit;
 			td.data = "email";
 			var node = document.createTextNode(objectResponse[key].email);
 			td.appendChild(node);
@@ -72,7 +72,7 @@ xhttp.onreadystatechange = function() {
 			
 			//remove
 			var td = document.createElement("td");
-			td.onclick = Remove;
+			td.ondblclick = Remove;
 			td.data = objectResponse[key].iddocente;
 			var icon = document.createElement("i");
 			icon.className = "fas fa-user-minus";
@@ -112,31 +112,37 @@ function Remove(){
 
 var xhttp3 = new XMLHttpRequest();
 function EditDB(){
-	alert("ciao");
 	xhttp3.open("POST", "../controller/EDIT_docenti.php", true);
 	xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp3.setRequestHeader("Accept","application/json");
 	xhttp3.send("id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
 }
 
+function Revert(){
+	if( this.parentElement.querySelector("input").value == "" ){
+			this.parentElement.innerHTML = this.parentElement.querySelector("input").placeholder;
+		} else {
+			this.parentElement.innerHTML = this.parentElement.querySelector("input").value;
+		}
+}
+
+function Enter(e){
+	if(e.keyCode == 13){
+		this.blur();
+	}
+}
+
 function Edit(){
 	
 	var camps = this.parentElement.childNodes;
-	for(i = 1; i < camps.length - 1; i++){
-		if( camps[i].querySelector("input") == null ){ continue; }
-		if( camps[i].querySelector("input").value == "" ){
-			camps[i].innerHTML = camps[i].querySelector("input").placeholder;
-		} else {
-			camps[i].innerHTML = camps[i].querySelector("input").value;
-		}
-	}	
-	
 	if( camps[0] == this ) { return; }
 	if( camps[camps.length - 1] == this ) { return; }
 	if(this.querySelector("input") != null ) { return; }
 	var input = document.createElement("input")
 	input.placeholder = this.innerHTML;
-	input.onchange = EditDB
+	input.onchange = EditDB;
+	input.onblur = Revert;
+	input.onkeypress = Enter;
 	this.innerHTML = "";
 	this.appendChild(input);
 	this.querySelector("input").focus();

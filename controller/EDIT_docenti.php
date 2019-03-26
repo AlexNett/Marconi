@@ -1,19 +1,16 @@
 <?php
 
-	include "../bin/connectDatabase.php";
-	
-	$result = $conn->prepare( "UPDATE docente SET :camp=:edit WHERE docente.iddocente=:id" );	
-	$result->bindParam(":camp", $_POST['camp']);
-	$result->bindParam(":edit", $_POST['edit']);
-	$result->bindParam(":id", $_POST['id']);
-	$result->execute();
-	
-	$result = $conn->prepare( "SELECT * from docente where 1" );	
-	$result->bindParam(":id", $_POST['id']);
-	$result->execute();
-	echo var_dump($result->fetch());
-	
-	
+	include "../bin/connectDatabaseMySQLi.php";
+
+	$sql = "UPDATE docente SET ".$_POST['camp']."='".$_POST['edit']."' WHERE iddocente=".$_POST['id']."";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "Record updated successfully";
+	} else {
+		echo "Error updating record: " . $conn->error;
+	}
+
+	$conn->close();
 	
 ?>
 
