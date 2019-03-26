@@ -14,7 +14,7 @@ xhttp.onreadystatechange = function() {
 		var row = document.createElement("tr");
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("id");
+		var node = document.createTextNode("Id");
 		th.appendChild(node);
 		row.appendChild(th);
 		

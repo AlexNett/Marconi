@@ -22,7 +22,7 @@ include "../model/allowAdmin.php";
 
     <div id="page">
     <!-- MAIN HTML START -->
-    <form id='add' method='POST' action='../controller/classiadd.php'>
+    <form id='add' method='POST' action='../controller/ADD_classi.php'>
     <table>
     <tr><td><input type='text' name='classe' placeholder = 'Classe' size="20" required></td><td rowspan="4" ><button class="btnn" type="submit">Aggiungi Classe <i class="fas fa-users"></i></button></td></tr>
     <tr><td><input type='text' name='sezione' placeholder = 'Sezione' size="20" required></td></tr>

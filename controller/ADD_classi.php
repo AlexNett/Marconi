@@ -5,7 +5,7 @@
         $return = $stm->execute([$_POST['classe'],$_POST['sezione']]);
         
         if($return){
-            header("Location: classi.php");
+            header("Location: ../view/classi.php");
 
         }
     }

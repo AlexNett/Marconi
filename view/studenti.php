@@ -22,7 +22,7 @@ include "../model/allowAdmin.php";
 
     <div id="page">
     <!-- MAIN HTML START -->
-    <form id='add' method='POST' action='../controller/studentiadd.php'>
+    <form id='add' method='POST' action='../controller/ADD_studenti.php'>
     <table>
     <tr><td><input type='text' name='nome' placeholder = 'Nome' size="15" required></td><td rowspan="4" ><button class="btnn" type="submit">Aggiungi Studente <i class="fas fa-user-plus"></i></button></td></tr>
     <tr><td><input type='text' name='cognome' placeholder = 'Cognome' size="15" required></td></tr>

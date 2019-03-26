@@ -5,7 +5,7 @@
         $return = $stm->execute([$_POST['nome'],$_POST['cognome'],$_POST['email'],$_POST['password']]);
         
         if($return){
-            header("Location: studenti.php");
+            header("Location: ../view/studenti.php");
 
         }
     }
