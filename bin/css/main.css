@@ -226,3 +226,12 @@ input:focus{
 	transform: translate(-50%, -50%);
 	position: absolute;
 }
+
+.notify {
+	padding: 5px;
+	margin: 2px;
+	color:  white;
+	border:  1px solid white;
+	background-color: #7ccc04;
+	position: fixed;
+}

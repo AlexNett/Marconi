@@ -72,7 +72,7 @@ xhttp.onreadystatechange = function() {
 			
 			//remove
 			var td = document.createElement("td");
-			td.ondblclick = Remove;
+			td.onclick = Remove;
 			td.data = objectResponse[key].iddocente;
 			var icon = document.createElement("i");
 			icon.className = "fas fa-user-minus";
@@ -98,24 +98,33 @@ function hide(){
 
 var xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
-	ReloadDump();
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Delete Done");
+	}
 }
 
 function Remove(){
-	this.parentElement.style.opacity = "0.2";
+	this.parentElement.innerHTML = "";
 	xhttp2.open("POST", "../controller/REMOVE_docenti.php", true);
 	xhttp2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp2.setRequestHeader("Accept","application/json");
 	xhttp2.send("id="+ this.data +"");
+	Notify("Deleting [id="+ this.data +"]");
 }
 
 
 var xhttp3 = new XMLHttpRequest();
+xhttp3.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Editing Done");
+	}
+}
 function EditDB(){
 	xhttp3.open("POST", "../controller/EDIT_docenti.php", true);
 	xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp3.setRequestHeader("Accept","application/json");
 	xhttp3.send("id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
+	Notify("Editing [id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"]");
 }
 
 function Revert(){
@@ -146,4 +155,34 @@ function Edit(){
 	this.innerHTML = "";
 	this.appendChild(input);
 	this.querySelector("input").focus();
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function Notify(msg){
+	
+	var p = document.createElement("p");
+	var txt = document.createTextNode(msg);
+	p.appendChild(txt);
+	
+	p.classList.add("notify");
+	p.style.left = "35px";
+	
+	var high = document.getElementsByClassName("notify");
+	
+	p.style.top = window.innerHeight - 35 - ((high.length + 1) * 35) + "px";
+	
+	document.querySelector("header").appendChild(p);
+	
+	await sleep(5000);
+	
+	high[0].remove();
+	
+	var high = document.getElementsByClassName("notify");
+	for(i = 0; i < high.length; i++){
+		var h = high[i].style.top;
+		high[i].style.top = (Number(h.substring(0, h.length - 2)) + 35) + "px"
+	}
 }
