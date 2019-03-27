@@ -100,7 +100,10 @@ function ReloadDump(){
 
 ReloadDump();
 
-document.getElementById("pageHide").style.display = 'none';
+function show(){
+	document.getElementById("pageHide").style.display = 'none';
+}
+show();
 function hide(){
 	document.getElementById("pageHide").style.display = 'block';
 }
@@ -199,6 +202,8 @@ async function Notify(msg){
 
 function Modal(){
 	
+	hide();
+	
 	var camps = this.parentElement.childNodes;
 	
 	var br = document.createElement("br");
@@ -234,6 +239,7 @@ function Modal(){
 	btnn.appendChild( document.createTextNode("Annulla") );
 	btnn.onclick = function(){
 		document.getElementById("Modal").remove();
+		show();
 	};
 	btnn.className = "btnn";
 	btnn.id = "annulla";
@@ -244,6 +250,7 @@ function Modal(){
 	btnn.appendChild( document.createTextNode("Modifica") );
 	btnn.onclick = function(){
 		document.getElementById("Modal").remove();
+		show();
 	};
 	btnn.style.left = "57%";
 	btnn.className = "btnn";
