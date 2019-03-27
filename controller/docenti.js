@@ -33,6 +33,11 @@ xhttp.onreadystatechange = function() {
 		th.appendChild(node);
 		row.appendChild(th);
 		
+		var th = document.createElement("th");
+		var node = document.createTextNode("Ruolo");
+		th.appendChild(node);
+		row.appendChild(th);
+		
 		table.appendChild(row);
 		
 		for (var key in objectResponse) {
@@ -67,6 +72,18 @@ xhttp.onreadystatechange = function() {
 			td.ondblclick = Edit;
 			td.data = "email";
 			var node = document.createTextNode(objectResponse[key].email);
+			td.appendChild(node);
+			row.appendChild(td);
+			
+			//ruolo
+			var td = document.createElement("td");
+			td.data = "ruolo";
+			if(objectResponse[key].ruolo_idruolo == 1){
+			var node = document.createTextNode("Amministratore");
+			}
+			if(objectResponse[key].ruolo_idruolo == 2){
+			var node = document.createTextNode("Docente");
+			}
 			td.appendChild(node);
 			row.appendChild(td);
 			
@@ -201,7 +218,34 @@ async function Notify(msg, error){
 	}
 }
 
+function EditDBFull(){
+		document.getElementById("Modal").remove();
+		
+		var camps = this.parentElement.childNodes;
+		
+		xhttp4.open("POST", "../controller/EDIT_FULL_docenti.php", true);
+		xhttp4.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhttp4.setRequestHeader("Accept","application/json");
+		var nome = (camps[1].value != "") ? camps[1].value : camps[1].placeholder;
+		var cognome = (camps[3].value != "") ? camps[3].value : camps[3].placeholder;
+		var email = (camps[5].value != "") ? camps[5].value : camps[5].placeholder;
+		var ruolo = camps[7].value;
+		xhttp4.send("id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"");
+		Notify("Full Editing [id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"]", false);
+		show();
+}
 
+function Advanced(){
+		
+}
+
+var xhttp4 = new XMLHttpRequest();
+xhttp4.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Full Editing Done");
+	}
+	ReloadDump();
+}
 function Modal(){
 	
 	hide();
@@ -212,10 +256,12 @@ function Modal(){
 	
 	var div = document.createElement("div");
 	div.id = "Modal";
+	div.data = camps[0].innerHTML;
 	
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Nome:") );
 	var input = document.createElement("input");
+	input.data = "nome";
 	input.placeholder = camps[1].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
@@ -224,6 +270,7 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Cognome:") );
 	var input = document.createElement("input");
+	input.data = "cognome";
 	input.placeholder = camps[2].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
@@ -232,9 +279,31 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Email:") );
 	var input = document.createElement("input");
+	input.data = "email";
 	input.placeholder = camps[3].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
+	div.appendChild(br);
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Ruolo:") );
+	var select = document.createElement("select");
+	var option = document.createElement("option")
+	var node = document.createTextNode("Amministratore");
+	option.value = "1";
+	option.appendChild(node);
+	select.appendChild( option );
+	var option = document.createElement("option")
+	var node = document.createTextNode("Docente");
+	option.value = "2";
+	option.appendChild(node);
+	select.appendChild( option );
+	if(camps[4].innerHTML == "Amministratore") select.value = 1;
+	if(camps[4].innerHTML == "Docente") select.value = 2;
+	label.style.display = "none";
+	select.style.display = "none";
+	div.appendChild(label);
+	div.appendChild(select);
 	div.appendChild(br);
 	
 	var btnn = document.createElement("button");
@@ -249,11 +318,21 @@ function Modal(){
 	div.appendChild(br);
 	
 	var btnn = document.createElement("button");
-	btnn.appendChild( document.createTextNode("Modifica") );
+	btnn.appendChild( document.createTextNode("Advanced") );
 	btnn.onclick = function(){
-		document.getElementById("Modal").remove();
-		show();
+		var camps = this.parentElement.childNodes;
+		for(i = 0;i < camps.length; i++){
+			camps[i].style.display = "";
+		}
 	};
+	btnn.style.left = "32%";
+	btnn.className = "btnn";
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Modifica") );
+	btnn.onclick = EditDBFull;
 	btnn.style.left = "57%";
 	btnn.className = "btnn";
 	div.appendChild(btnn);

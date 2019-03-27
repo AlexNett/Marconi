@@ -199,7 +199,6 @@ async function Notify(msg){
 	}
 }
 
-
 function Modal(){
 	
 	hide();
