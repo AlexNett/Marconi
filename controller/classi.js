@@ -27,6 +27,11 @@ xhttp.onreadystatechange = function() {
 		var node = document.createTextNode("Sezione");
 		th.appendChild(node);
 		row.appendChild(th);
+
+		var th = document.createElement("th");
+		var node = document.createTextNode("Anno Scolastico");
+		th.appendChild(node);
+		row.appendChild(th);
 		
 		
 		table.appendChild(row);
@@ -55,6 +60,14 @@ xhttp.onreadystatechange = function() {
 			td.ondblclick = Edit;
 			td.data = "sezione";
 			var node = document.createTextNode(objectResponse[key].sezione);
+			td.appendChild(node);
+			row.appendChild(td);
+
+			//anno scolastico
+			var td = document.createElement("td");
+			td.ondblclick = Edit;
+			td.data = "annos";
+			var node = document.createTextNode(objectResponse[key].annoScolastico);
 			td.appendChild(node);
 			row.appendChild(td);
 		
@@ -210,6 +223,14 @@ function Modal(){
 	label.appendChild( document.createTextNode("Sezione:") );
 	var input = document.createElement("input");
 	input.placeholder = camps[2].innerHTML;
+	div.appendChild(label);
+	div.appendChild(input);
+	div.appendChild(br);
+
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Anno Scolastico:") );
+	var input = document.createElement("input");
+	input.placeholder = camps[3].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
