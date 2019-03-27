@@ -100,7 +100,11 @@ function ReloadDump(){
 
 ReloadDump();
 
-document.getElementById("pageHide").style.display = 'none';
+
+function show(){
+	document.getElementById("pageHide").style.display = 'none';
+}
+show();
 function hide(){
 	document.getElementById("pageHide").style.display = 'block';
 }
@@ -108,7 +112,7 @@ function hide(){
 var xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
-	Notify("Delete Done");
+	Notify("Delete Done", false);
 	}
 }
 
@@ -118,14 +122,14 @@ function Remove(){
 	xhttp2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp2.setRequestHeader("Accept","application/json");
 	xhttp2.send("id="+ this.data +"");
-	Notify("Deleting [id="+ this.data +"]");
+	Notify("Deleting [id="+ this.data +"]", false);
 }
 
 
 var xhttp3 = new XMLHttpRequest();
 xhttp3.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
-	Notify("Editing Done");
+	Notify("Editing Done", false);
 	}
 }
 function EditDB(){
@@ -133,7 +137,7 @@ function EditDB(){
 	xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp3.setRequestHeader("Accept","application/json");
 	xhttp3.send("id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
-	Notify("Editing [id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"]");
+	Notify("Editing [id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"]", false);
 }
 
 function Revert(){
@@ -170,7 +174,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function Notify(msg){
+async function Notify(msg, error){
 	
 	var p = document.createElement("p");
 	var txt = document.createTextNode(msg);
@@ -178,6 +182,7 @@ async function Notify(msg){
 	
 	p.classList.add("notify");
 	p.style.left = "35px";
+	if(error) {p.style.backgroundColor = "red";}
 	
 	var high = document.getElementsByClassName("notify");
 	
@@ -198,6 +203,8 @@ async function Notify(msg){
 
 
 function Modal(){
+	
+	hide();
 	
 	var camps = this.parentElement.childNodes;
 	
@@ -234,6 +241,7 @@ function Modal(){
 	btnn.appendChild( document.createTextNode("Annulla") );
 	btnn.onclick = function(){
 		document.getElementById("Modal").remove();
+		show();
 	};
 	btnn.className = "btnn";
 	btnn.id = "annulla";
@@ -244,6 +252,7 @@ function Modal(){
 	btnn.appendChild( document.createTextNode("Modifica") );
 	btnn.onclick = function(){
 		document.getElementById("Modal").remove();
+		show();
 	};
 	btnn.style.left = "57%";
 	btnn.className = "btnn";
