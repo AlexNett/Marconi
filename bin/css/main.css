@@ -291,6 +291,12 @@ input:focus{
 	color: black;
 }
 
+#Modal #ModalInner{
+	 border: 0px solid black;
+	 height: 80%;
+	 overflow:auto;
+}
+
 #Modal p{
 margin: 0;
 margin-top: 25px;
