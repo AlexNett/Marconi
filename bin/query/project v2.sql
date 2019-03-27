@@ -179,7 +179,9 @@ CREATE TABLE `studente` (
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `classe_idclasse` int(11) NOT NULL
+  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

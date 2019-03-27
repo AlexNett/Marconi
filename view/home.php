@@ -30,7 +30,7 @@ echo "<input name='email' placeholder='Email'><br>";
 echo "<input name='password' placeholder='Password' type='password'><br>";
 echo "<button type='submit' class='btnn'>Login</button>";
 } else {
-echo "<button type='submit' class='btnn' formaction='../controller/logout.php'>Logout</button>";
+echo "<button id='btnlog' type='submit' class='btnn' formaction='../controller/logout.php'>Logout</button>";
 
 }
 ?>
