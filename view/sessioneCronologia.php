@@ -19,16 +19,18 @@ include "../model/header.php";
 </table></tr>
 </header>
 
-<div id="page" style="text-align: center">
+
 <!-- MAIN HTML START -->
-<input class="btnn" type="button" value="Avvia sessione" onclick="window.location.href='sessioneCorrente.php'">
-<input class="btnn" type="button" value="Cronologia sessioni" onclick="window.location.href='sessioneCronologia.php'">
+<div id="tableDiv">
+<table id="dump">
+</table>
+</div>
 <!-- MAIN HTML END -->
 <footer id="footer">Made by ITISMeucci</footer>
-</div>
 </div>
 
 
 	<script src="../controller/main.js"></script>
+	<script src="../controller/sessioneCronologia.js"></script>
   </body>
 </html>
