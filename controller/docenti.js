@@ -14,7 +14,7 @@ xhttp.onreadystatechange = function() {
 		var row = document.createElement("tr");
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("id");
+		var node = document.createTextNode("Id");
 		th.appendChild(node);
 		row.appendChild(th);
 		
@@ -68,6 +68,15 @@ xhttp.onreadystatechange = function() {
 			td.data = "email";
 			var node = document.createTextNode(objectResponse[key].email);
 			td.appendChild(node);
+			row.appendChild(td);
+			
+			//edit
+			var td = document.createElement("td");
+			td.onclick = Modal;
+			td.data = objectResponse[key].iddocente;
+			var icon = document.createElement("i");
+			icon.className = "fas fa-user-edit";
+			td.appendChild(icon);
 			row.appendChild(td);
 			
 			//remove
@@ -183,6 +192,64 @@ async function Notify(msg){
 	var high = document.getElementsByClassName("notify");
 	for(i = 0; i < high.length; i++){
 		var h = high[i].style.top;
-		high[i].style.top = (Number(h.substring(0, h.length - 2)) + 35) + "px"
+		high[i].style.top = (Number(h.substring(0, h.length - 2)) + 35) + "px";
 	}
+}
+
+
+function Modal(){
+	
+	var camps = this.parentElement.childNodes;
+	
+	var br = document.createElement("br");
+	
+	var div = document.createElement("div");
+	div.id = "Modal";
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Nome:") );
+	var input = document.createElement("input");
+	input.placeholder = camps[1].innerHTML;
+	div.appendChild(label);
+	div.appendChild(input);
+	div.appendChild(br);
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Cognome:") );
+	var input = document.createElement("input");
+	input.placeholder = camps[2].innerHTML;
+	div.appendChild(label);
+	div.appendChild(input);
+	div.appendChild(br);
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Email:") );
+	var input = document.createElement("input");
+	input.placeholder = camps[3].innerHTML;
+	div.appendChild(label);
+	div.appendChild(input);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Annulla") );
+	btnn.onclick = function(){
+		document.getElementById("Modal").remove();
+	};
+	btnn.className = "btnn";
+	btnn.id = "annulla";
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Modifica") );
+	btnn.onclick = function(){
+		document.getElementById("Modal").remove();
+	};
+	btnn.style.left = "57%";
+	btnn.className = "btnn";
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	document.querySelector("header").appendChild(div);
+	
 }

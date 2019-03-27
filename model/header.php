@@ -24,7 +24,7 @@
 		}
 		
 		foreach ($array as $value) {
-			echo "<td><a href=".strtolower($value).".php><span>/</span>".$value."</a></td>";
+			echo "<td><a href=".strtolower($value).".php><span style='margin-left:10px'></span>".$value."</a></td>";
 		}
 	
 	}
