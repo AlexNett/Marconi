@@ -87,15 +87,26 @@ input:focus{
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	font-size : 120%;
 	cursor: pointer;
-	border: 3px solid #7ccc04;
+	border: 3px solid #67ac00;
 	color: black;
 	font-variant: bold;
 	outline:none;
 }
 
+#btnlog
+{
+	border: 3px solid red;
+}
+
+#btnlog:hover
+{
+	background-color: red;
+	border-color:red;
+}
+
 .btnn:hover{
-	background-color: #7ccc04;
-	border: 3px solid #7ccc04;
+	background-color: #67ac00;
+	border: 3px solid #67ac00;
 	color: white;
 	transition: 0.25s;
 }
@@ -113,7 +124,7 @@ input:focus{
 #headerTable a:hover{
 
 	font-size: 125%;
-	color: #045304;
+	color: #0e770e;
 	text-decoration: none;
 	transition: 0.25s;
 }
@@ -160,11 +171,11 @@ input:focus{
 }
 
 .fa-user-edit{
-	border: 3px solid #7ccc04;
+	cursor: pointer;
 }
 
 .fa-user-minus{
-	border: 3px solid red;
+	cursor: pointer;
 }
 
 .fa-users:before {
@@ -201,7 +212,7 @@ input:focus{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #7ccc04;
+  background-color: #67ac00;
   color: white;
 }
 
@@ -247,7 +258,7 @@ input:focus{
 #tableDiv table input {
 	margin: 0;
 	padding: 0;
-	border-bottom: 2px solid #7ccc04;
+	border-bottom: 2px solid #67ac00;
 	font-size : 100%;
 	transform: translate(-50%, -50%);
 	position: absolute;
@@ -258,7 +269,7 @@ input:focus{
 	margin: 2px;
 	color:  white;
 	border:  1px solid white;
-	background-color: #7ccc04;
+	background-color: #67ac00;
 	position: fixed;
 }
 

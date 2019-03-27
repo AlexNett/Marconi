@@ -41,8 +41,8 @@ xhttp.onreadystatechange = function() {
 			//id
 			var td = document.createElement("td");
 			td.ondblclick = Edit;
-			td.data = objectResponse[key].iddocente
-			var node = document.createTextNode(objectResponse[key].iddocente);
+			td.data = objectResponse[key].idstudente
+			var node = document.createTextNode(objectResponse[key].idstudente);
 			td.appendChild(node);
 			row.appendChild(td);
 			
