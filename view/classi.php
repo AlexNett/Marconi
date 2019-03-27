@@ -10,6 +10,14 @@ include "../model/allowAdmin.php";
     <title>Studenti</title>
   </head>
   <body>
+
+  <div id="pageHide">
+  <div>
+  <p>Working...</p>
+  <img src="../bin/resources/Marconi Logo.png">
+  </div>
+  </div>
+  
     <header id="header">
     <table id="headerTable"><tr>
     <td><a href="home.php"><img class="logo" src="../bin/resources/Marconi logo.png" width="90" height="90"></a></td>
@@ -34,47 +42,9 @@ include "../model/allowAdmin.php";
     </div>
     <div id = 'tableDiv'>
       <table id="dump">
-        <tr>
-          <th>Id Classe</th>
-          <th>Classe</th>
-          <th>Sezione</th>
-          <?php
-            tableClasse();
-          ?>
       </table>
     </div>
   </body>
-
+  <script src="../controller/classi.js"></script>
 	<script src="../controller/main.js"></script>
-  </body>
 </html>
-
-<?php
-  function tableClasse() 
-  {
-    include "../bin/connectDatabase.php";
-    try{
-      $stm = $conn->prepare("SELECT idclasse,classe,sezione FROM classe");
-      $stm->execute();
-      $return = $stm->fetchAll(); 
-    }
-    catch(Exception $e)
-    {
-        echo $e->getMessage();
-        exit();
-    }
-    for($i=0; $i<sizeof($return);$i++)
-    {
-      if($i % 2 == 0 )
-      echo '<tr style="background-color: #7ccc04">';
-      else
-      echo '<tr>';
-      for($j=0;$j<3;$j++)
-      {
-        echo '<td>'.$return[$i][$j].'</td>';
-      }
-      echo '<td class = "btn-del"><i class="fas fa-user-edit"></i></td>';
-      echo '<td class ="btn-del"><i class="fas fa-user-times"></i></td></tr>';
-    }
-  }
-  ?>

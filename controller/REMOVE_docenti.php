@@ -5,7 +5,7 @@
 	$result = $conn->prepare( "DELETE FROM docente WHERE docente.iddocente = ?" );
 	$result->execute([$_POST['id']]);
 	
-	Header('Location: ../view/torni.php');
+	Header('Location: ../view/docenti.php');
 	
 ?>
 

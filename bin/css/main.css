@@ -107,6 +107,7 @@ input:focus{
 	border-bottom: 0px solid #808080	;
 	transition: 0.25s;
 	text-shadow: 1px 1px 1px #808080	;
+	margin-right: 10px;
 }
 
 #headerTable a:hover{
@@ -159,11 +160,11 @@ input:focus{
 }
 
 .fa-user-edit{
-	border: 1px solid #7ccc04;
+	border: 3px solid #7ccc04;
 }
 
 .fa-user-minus{
-	border: 1px solid red;
+	border: 3px solid red;
 }
 
 .fa-users:before {
@@ -284,7 +285,7 @@ margin: 0;
 margin-top: 25px;
 font-size: 125%;
 color: black;
-background-color: #f7f7f7;
+background-color: rgb(172, 172, 172);
 border-radius: 60px;
 padding: 5px;
 padding-left: 15px;
@@ -301,7 +302,7 @@ margin-top: 25px;
 margin-bottom: 10px;
 font-size: 125%;
 color: black;
-background-color: #f7f7f7;
+background-color: rgb(172, 172, 172);
 border-radius: 60px;
 padding: 5px;
 padding-left: 15px;
