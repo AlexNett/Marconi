@@ -216,6 +216,50 @@ input:focus{
   color: white;
 }
 
+#dump1 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 100%;
+}
+
+#dump1 td, #dump th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#dump1 tr:nth-child(even){background-color: #f7f7f7;}
+
+#dump1 tr:hover {background-color: #eee;}
+
+#dump1 th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #67ac00;
+  color: white;
+}
+
+#dump2 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 100%;
+}
+
+#dump2 td, #dump th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#dump2 tr:nth-child(even){background-color: #f7f7f7;}
+
+#dump2 tr:hover {background-color: #eee;}
+
+#dump2 th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #67ac00;
+  color: white;
+}
+
 #pageHide{
 	position: fixed; height: 100%; width: 100%; top:0; left: 0; background: rgba(255,255,255,0.7); z-index:9999;
 	text-align: center;
