@@ -6,7 +6,7 @@
 	$db = "quintab_project";
 	global $conn;
 	$user = "root";
-	$password = "";
+	$password = "root";
 	//$user = "quintab";
 	//$password = "HA45@BMV";
 			

@@ -5,7 +5,7 @@ xhttp.onreadystatechange = function() {
 		var response = xhttp.responseText;
 		var objectResponse = JSON.parse(response);
 		
-		var table = document.getElementById("dump1");
+		var table = document.getElementById("dump");
 		
 		while (table.firstChild) {
 			table.removeChild(table.firstChild);
@@ -19,12 +19,22 @@ xhttp.onreadystatechange = function() {
 		row.appendChild(th);
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("Data inizio");
+		var node = document.createTextNode("Data");
 		th.appendChild(node);
 		row.appendChild(th);
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("Data fine");
+		var node = document.createTextNode("Tipo evento");
+		th.appendChild(node);
+		row.appendChild(th);
+		
+		var th = document.createElement("th");
+		var node = document.createTextNode("Oggetto");
+		th.appendChild(node);
+		row.appendChild(th);
+		
+		var th = document.createElement("th");
+		var node = document.createTextNode("Gruppo");
 		th.appendChild(node);
 		row.appendChild(th);
 		
@@ -35,19 +45,31 @@ xhttp.onreadystatechange = function() {
 			
 			//id
 			var td = document.createElement("td");
-			var node = document.createTextNode(objectResponse[key].idsessione);
+			var node = document.createTextNode(objectResponse[key].idevento);
 			td.appendChild(node);
 			row.appendChild(td);
 			
-			//data inizio
+			//data
 			var td = document.createElement("td");
-			var node = document.createTextNode(objectResponse[key].datainizio);
+			var node = document.createTextNode(objectResponse[key].data);
 			td.appendChild(node);
 			row.appendChild(td);
 			
-			//data fine
+			//tipo evento
 			var td = document.createElement("td");
-			var node = document.createTextNode(objectResponse[key].datafine);
+			var node = document.createTextNode(objectResponse[key].tipoevento_idtipoevento);
+			td.appendChild(node);
+			row.appendChild(td);
+			
+			//oggetto
+			var td = document.createElement("td");
+			var node = document.createTextNode(objectResponse[key].oggetto_idoggetto);
+			td.appendChild(node);
+			row.appendChild(td);
+			
+			//gruppo
+			var td = document.createElement("td");
+			var node = document.createTextNode(objectResponse[key].gruppo_idgruppo);
 			td.appendChild(node);
 			row.appendChild(td);
 			
@@ -57,7 +79,7 @@ xhttp.onreadystatechange = function() {
 };
 
 function ReloadDump(){
-	xhttp.open("GET", "../model/dump_cronologia.php", true);
+	xhttp.open("GET", "../model/DUMP_sessioneEventi.php", true);
 	xhttp.send();
 }
 

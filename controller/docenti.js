@@ -169,6 +169,10 @@ function Enter(e){
 	if(e.keyCode == 13){
 		this.blur();
 	}
+	if(e.keyCode === 27){
+		this.value = this.placeholder;
+		this.blur();
+	}
 }
 
 function Edit(){
@@ -181,7 +185,7 @@ function Edit(){
 	input.placeholder = this.innerHTML;
 	input.onchange = EditDB;
 	input.onblur = Revert;
-	input.onkeypress = Enter;
+	input.onkeydown = Enter;
 	this.innerHTML = "";
 	this.appendChild(input);
 	this.querySelector("input").focus();
@@ -235,10 +239,13 @@ function EditDBFull(){
 		show();
 }
 
-function Advanced(){
-		
+var xhttp5 = new XMLHttpRequest();
+xhttp5.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Password Resetted");
+	}
+	ReloadDump();
 }
-
 var xhttp4 = new XMLHttpRequest();
 xhttp4.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
@@ -254,9 +261,13 @@ function Modal(){
 	
 	var br = document.createElement("br");
 	
+	var divo = document.createElement("div");
+	divo.id = "Modal";
+	
 	var div = document.createElement("div");
-	div.id = "Modal";
+	div.id = "ModalInner";
 	div.data = camps[0].innerHTML;
+	divo.appendChild(div);
 	
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Nome:") );
@@ -306,6 +317,31 @@ function Modal(){
 	div.appendChild(select);
 	div.appendChild(br);
 	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Password:") );
+	var input = document.createElement("input");
+	input.type = "password";
+	input.placeholder = "Password";
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Reset") )
+	btnn.onclick = function(){
+		var camps = this.parentElement.childNodes;
+		xhttp5.open("POST", "../controller/resetPasswordDocente.php", true);
+		xhttp5.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhttp5.setRequestHeader("Accept","application/json");
+		xhttp5.send("pass="+camps[10].value+"&id="+this.parentElement.data+"");
+		Notify("Resetting Password...", false);
+		document.getElementById("Modal").remove();
+		show();
+	}
+	label.style.display = "none";
+	input.style.display = "none";
+	btnn.style.display = "none";
+	div.appendChild(label);
+	div.appendChild(btnn);
+	div.appendChild(input);
+	div.appendChild(br);
+	
 	var btnn = document.createElement("button");
 	btnn.appendChild( document.createTextNode("Annulla") );
 	btnn.onclick = function(){
@@ -324,8 +360,9 @@ function Modal(){
 		for(i = 0;i < camps.length; i++){
 			camps[i].style.display = "";
 		}
+		this.remove();
 	};
-	btnn.style.left = "32%";
+	btnn.style.left = "17%";
 	btnn.className = "btnn";
 	div.appendChild(btnn);
 	div.appendChild(br);
@@ -338,6 +375,6 @@ function Modal(){
 	div.appendChild(btnn);
 	div.appendChild(br);
 	
-	document.querySelector("header").appendChild(div);
+	document.querySelector("header").appendChild(divo);
 	
 }
