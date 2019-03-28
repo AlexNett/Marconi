@@ -2,7 +2,7 @@
 
 	include "../bin/connectDatabase.php";
 	
-	$result = $conn->prepare( "SELECT * FROM ruolo" );
+	$result = $conn->prepare( "SELECT * FROM annoscolastico" );
 	$result->execute();
 	
 	$array = array();

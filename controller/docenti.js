@@ -161,6 +161,30 @@ function EditDBFull(){
 		}
 }
 
+
+var xhttp6 = new XMLHttpRequest();
+xhttp6.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Ruoli fetched");
+	
+	var response = xhttp6.responseText;
+	var objectResponsee = JSON.parse(response);
+	
+	var select = document.getElementById("RuoliCB");
+	
+	for (var key in objectResponsee) {
+		
+		var option = document.createElement("option")
+		var node = document.createTextNode(objectResponsee[key].descrizione);
+		option.value = objectResponsee[key].idruolo;
+		option.appendChild(node);
+		select.appendChild( option );
+	}
+	
+	select.value = select.data;
+	
+	}
+}
 var xhttp5 = new XMLHttpRequest();
 xhttp5.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
@@ -221,17 +245,10 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Ruolo:") );
 	var select = document.createElement("select");
-	var option = document.createElement("option")
-	var node = document.createTextNode("Amministratore");
-	option.value = "1";
-	option.appendChild(node);
-	select.appendChild( option );
-	var option = document.createElement("option")
-	var node = document.createTextNode("Docente");
-	option.value = "2";
-	option.appendChild(node);
-	select.appendChild( option );
-	select.value = camps[3].data;
+	select.id = "RuoliCB";
+	select.data = camps[3].data;
+	xhttp6.open("GET", "../model/DUMP_ruoli.php", true);
+	xhttp6.send();
 	label.style.display = "none";
 	select.style.display = "none";
 	div.appendChild(label);

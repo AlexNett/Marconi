@@ -52,7 +52,7 @@ xhttp.onreadystatechange = function() {
 			
 			//AnnoScolastico
 			var td = document.createElement("td");
-			td.data = objectResponse[key].annoScolastico;
+			td.data = objectResponse[key].idannoscolastico;
 			var node = document.createTextNode(objectResponse[key].annoInizio + " - " + objectResponse[key].annoFine);
 			td.appendChild(node);
 			row.appendChild(td);
@@ -123,30 +123,41 @@ function EditDBFull(){
 		
 		var camps = this.parentElement.childNodes;
 		
-		xhttp4.open("POST", "../controller/EDIT_FULL_docenti.php", true);
+		xhttp4.open("POST", "../controller/EDIT_FULL_classi.php", true);
 		xhttp4.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhttp4.setRequestHeader("Accept","application/json");
-		var nome = (camps[1].value != "") ? camps[1].value : camps[1].placeholder;
-		var cognome = (camps[3].value != "") ? camps[3].value : camps[3].placeholder;
-		var email = (camps[5].value != "") ? camps[5].value : camps[5].placeholder;
-		var ruolo = camps[7].value;
-		xhttp4.send("id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"");
-		Notify("Full Editing [id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"]", false);
+		var classe = (camps[1].value != "") ? camps[1].value : camps[1].placeholder;
+		var sezione = (camps[3].value != "") ? camps[3].value : camps[3].placeholder;
+		var annoscolastico = camps[5].value;
+		xhttp4.send("id="+this.parentElement.data+"&classe="+classe+"&sezione="+sezione+"&annoscolastico="+annoscolastico+"");
+		Notify("Full Editing [id="+this.parentElement.data+"&classe="+classe+"&sezione="+sezione+"&annoscolastico="+annoscolastico+"]", false);
 		show();
-		
-		if(camps[9].value != "") {
-			
-		var camps = this.parentElement.childNodes;
-		xhttp5.open("POST", "../controller/resetPasswordDocente.php", true);
-		xhttp5.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhttp5.setRequestHeader("Accept","application/json");
-		xhttp5.send("pass="+camps[9].value+"&id="+this.parentElement.data+"");
-		Notify("Resetting Password...", false);
-		document.getElementById("Modal").remove();
-		show();
-		}
 }
 
+var xhttp6 = new XMLHttpRequest();
+xhttp6.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Anno Scolastico fetched");
+	
+	var response = xhttp6.responseText;
+	var objectResponsee = JSON.parse(response);
+	
+	var select = document.getElementById("AnnoScolasticoCB");
+	select.id = "";
+	
+	for (var key in objectResponsee) {
+		
+		var option = document.createElement("option")
+		var node = document.createTextNode(objectResponsee[key].annoInizio + " - " + objectResponsee[key].annoFine);
+		option.value = objectResponsee[key].idannoscolastico;
+		option.appendChild(node);
+		select.appendChild( option );
+	}
+	
+	select.value = select.data;
+	
+	}
+}
 var xhttp4 = new XMLHttpRequest();
 xhttp4.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
@@ -189,19 +200,12 @@ function Modal(){
 	div.appendChild(br);
 	
 	var label = document.createElement("p");
-	label.appendChild( document.createTextNode("Ruolo:") );
+	label.appendChild( document.createTextNode("Anno scolastico:") );
 	var select = document.createElement("select");
-	var option = document.createElement("option")
-	var node = document.createTextNode("Amministratore");
-	option.value = "1";
-	option.appendChild(node);
-	select.appendChild( option );
-	var option = document.createElement("option")
-	var node = document.createTextNode("Docente");
-	option.value = "2";
-	option.appendChild(node);
-	select.appendChild( option );
-	select.value = camps[2].data;
+	select.id = "AnnoScolasticoCB";
+	select.data = camps[2].data;
+	xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
+	xhttp6.send();
 	label.style.display = "none";
 	select.style.display = "none";
 	div.appendChild(label);
@@ -243,3 +247,6 @@ function Modal(){
 	
 	document.querySelector("header").appendChild(divo);
 }
+
+xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
+xhttp6.send();
