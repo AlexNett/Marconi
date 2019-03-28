@@ -46,6 +46,9 @@ include "../model/allowAdmin.php";
       </table>
     </div>
   </body>
+	<script src="../controller/showhide.js"></script>
+  <script src="../controller/notifySystem.js"></script>
+  <script src="../controller/dbclickEdit.js"></script>
   <script src="../controller/classi.js"></script>
 	<script src="../controller/main.js"></script>
 </html>

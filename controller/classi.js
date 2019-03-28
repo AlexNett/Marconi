@@ -14,11 +14,6 @@ xhttp.onreadystatechange = function() {
 		var row = document.createElement("tr");
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("Id");
-		th.appendChild(node);
-		row.appendChild(th);
-		
-		var th = document.createElement("th");
 		var node = document.createTextNode("Classe");
 		th.appendChild(node);
 		row.appendChild(th);
@@ -27,27 +22,19 @@ xhttp.onreadystatechange = function() {
 		var node = document.createTextNode("Sezione");
 		th.appendChild(node);
 		row.appendChild(th);
-
+		
 		var th = document.createElement("th");
-		var node = document.createTextNode("Anno Scolastico");
+		var node = document.createTextNode("AnnoScolastico");
 		th.appendChild(node);
 		row.appendChild(th);
-		
 		
 		table.appendChild(row);
 		
 		for (var key in objectResponse) {
 			var row = document.createElement("tr");
+			row.data = objectResponse[key].idclasse;
 			
-			//id
-			var td = document.createElement("td");
-			td.ondblclick = Edit;
-			td.data = objectResponse[key].idclasse
-			var node = document.createTextNode(objectResponse[key].idclasse);
-			td.appendChild(node);
-			row.appendChild(td);
-			
-			//classe
+			//Classe
 			var td = document.createElement("td");
 			td.ondblclick = Edit;
 			td.data = "classe"
@@ -55,22 +42,21 @@ xhttp.onreadystatechange = function() {
 			td.appendChild(node);
 			row.appendChild(td);
 			
-			//sezione
+			//Sezione
 			var td = document.createElement("td");
 			td.ondblclick = Edit;
 			td.data = "sezione";
 			var node = document.createTextNode(objectResponse[key].sezione);
 			td.appendChild(node);
 			row.appendChild(td);
-
-			//anno scolastico
+			
+			//AnnoScolastico
 			var td = document.createElement("td");
-			td.ondblclick = Edit;
-			td.data = "annos";
-			var node = document.createTextNode(objectResponse[key].annoScolastico);
+			td.data = objectResponse[key].annoScolastico;
+			var node = document.createTextNode(objectResponse[key].annoInizio + " - " + objectResponse[key].annoFine);
 			td.appendChild(node);
 			row.appendChild(td);
-		
+			
 			//edit
 			var td = document.createElement("td");
 			td.onclick = Modal;
@@ -101,105 +87,73 @@ function ReloadDump(){
 
 ReloadDump();
 
-function show(){
-	document.getElementById("pageHide").style.display = 'none';
-}
-show();
-function hide(){
-	document.getElementById("pageHide").style.display = 'block';
-}
-
 var xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
-	Notify("Delete Done");
+	Notify("Delete Done", false);
 	}
 }
-
 function Remove(){
 	this.parentElement.innerHTML = "";
 	xhttp2.open("POST", "../controller/REMOVE_classi.php", true);
 	xhttp2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp2.setRequestHeader("Accept","application/json");
 	xhttp2.send("id="+ this.data +"");
-	Notify("Deleting [id="+ this.data +"]");
+	Notify("Deleting [id="+ this.data +"]", false);
 }
 
-
+// THIS IS THE PERSONALIZATION FOR THE "dbclickEdit.js" FILE,
+// EditDB() can be personalized.
 var xhttp3 = new XMLHttpRequest();
 xhttp3.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
-	Notify("Editing Done");
+	Notify("Editing Done", false);
 	}
 }
 function EditDB(){
 	xhttp3.open("POST", "../controller/EDIT_classi.php", true);
 	xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp3.setRequestHeader("Accept","application/json");
-	xhttp3.send("id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
-	Notify("Editing [id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"]");
+	xhttp3.send("id="+ this.parentElement.parentElement.data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
+	Notify("Editing [id="+ this.parentElement.parentElement.data +"&camp="+this.parentElement.data+"&edit="+this.value+"]", false);
 }
 
-function Revert(){
-	if( this.parentElement.querySelector("input").value == "" ){
-			this.parentElement.innerHTML = this.parentElement.querySelector("input").placeholder;
-		} else {
-			this.parentElement.innerHTML = this.parentElement.querySelector("input").value;
+function EditDBFull(){
+		document.getElementById("Modal").remove();
+		
+		var camps = this.parentElement.childNodes;
+		
+		xhttp4.open("POST", "../controller/EDIT_FULL_docenti.php", true);
+		xhttp4.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhttp4.setRequestHeader("Accept","application/json");
+		var nome = (camps[1].value != "") ? camps[1].value : camps[1].placeholder;
+		var cognome = (camps[3].value != "") ? camps[3].value : camps[3].placeholder;
+		var email = (camps[5].value != "") ? camps[5].value : camps[5].placeholder;
+		var ruolo = camps[7].value;
+		xhttp4.send("id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"");
+		Notify("Full Editing [id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"]", false);
+		show();
+		
+		if(camps[9].value != "") {
+			
+		var camps = this.parentElement.childNodes;
+		xhttp5.open("POST", "../controller/resetPasswordDocente.php", true);
+		xhttp5.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhttp5.setRequestHeader("Accept","application/json");
+		xhttp5.send("pass="+camps[9].value+"&id="+this.parentElement.data+"");
+		Notify("Resetting Password...", false);
+		document.getElementById("Modal").remove();
+		show();
 		}
 }
 
-function Enter(e){
-	if(e.keyCode == 13){
-		this.blur();
+var xhttp4 = new XMLHttpRequest();
+xhttp4.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Full Editing Done");
 	}
+	ReloadDump();
 }
-
-function Edit(){
-	
-	var camps = this.parentElement.childNodes;
-	if( camps[0] == this ) { return; }
-	if( camps[camps.length - 1] == this ) { return; }
-	if(this.querySelector("input") != null ) { return; }
-	var input = document.createElement("input")
-	input.placeholder = this.innerHTML;
-	input.onchange = EditDB;
-	input.onblur = Revert;
-	input.onkeypress = Enter;
-	this.innerHTML = "";
-	this.appendChild(input);
-	this.querySelector("input").focus();
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function Notify(msg){
-	
-	var p = document.createElement("p");
-	var txt = document.createTextNode(msg);
-	p.appendChild(txt);
-	
-	p.classList.add("notify");
-	p.style.left = "35px";
-	
-	var high = document.getElementsByClassName("notify");
-	
-	p.style.top = window.innerHeight - 35 - ((high.length + 1) * 35) + "px";
-	
-	document.querySelector("header").appendChild(p);
-	
-	await sleep(5000);
-	
-	high[0].remove();
-	
-	var high = document.getElementsByClassName("notify");
-	for(i = 0; i < high.length; i++){
-		var h = high[i].style.top;
-		high[i].style.top = (Number(h.substring(0, h.length - 2)) + 35) + "px";
-	}
-}
-
 function Modal(){
 	
 	hide();
@@ -208,13 +162,19 @@ function Modal(){
 	
 	var br = document.createElement("br");
 	
+	var divo = document.createElement("div");
+	divo.id = "Modal";
+	
 	var div = document.createElement("div");
-	div.id = "Modal";
+	div.id = "ModalInner";
+	div.data = this.parentElement.data;
+	divo.appendChild(div);
 	
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Classe:") );
 	var input = document.createElement("input");
-	input.placeholder = camps[1].innerHTML;
+	input.data = "classe";
+	input.placeholder = camps[0].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
@@ -222,17 +182,30 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Sezione:") );
 	var input = document.createElement("input");
-	input.placeholder = camps[2].innerHTML;
+	input.data = "sezione";
+	input.placeholder = camps[1].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
-
+	
 	var label = document.createElement("p");
-	label.appendChild( document.createTextNode("Anno Scolastico:") );
-	var input = document.createElement("input");
-	input.placeholder = camps[3].innerHTML;
+	label.appendChild( document.createTextNode("Ruolo:") );
+	var select = document.createElement("select");
+	var option = document.createElement("option")
+	var node = document.createTextNode("Amministratore");
+	option.value = "1";
+	option.appendChild(node);
+	select.appendChild( option );
+	var option = document.createElement("option")
+	var node = document.createTextNode("Docente");
+	option.value = "2";
+	option.appendChild(node);
+	select.appendChild( option );
+	select.value = camps[2].data;
+	label.style.display = "none";
+	select.style.display = "none";
 	div.appendChild(label);
-	div.appendChild(input);
+	div.appendChild(select);
 	div.appendChild(br);
 	
 	var btnn = document.createElement("button");
@@ -247,16 +220,26 @@ function Modal(){
 	div.appendChild(br);
 	
 	var btnn = document.createElement("button");
-	btnn.appendChild( document.createTextNode("Modifica") );
+	btnn.appendChild( document.createTextNode("Advanced") );
 	btnn.onclick = function(){
-		document.getElementById("Modal").remove();
-		show();
+		var camps = this.parentElement.childNodes;
+		for(i = 0;i < camps.length; i++){
+			camps[i].style.display = "";
+		}
+		this.remove();
 	};
+	btnn.style.left = "17%";
+	btnn.className = "btnn";
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Modifica") );
+	btnn.onclick = EditDBFull;
 	btnn.style.left = "57%";
 	btnn.className = "btnn";
 	div.appendChild(btnn);
 	div.appendChild(br);
 	
-	document.querySelector("header").appendChild(div);
-	
+	document.querySelector("header").appendChild(divo);
 }
