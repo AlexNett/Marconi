@@ -14,11 +14,6 @@ xhttp.onreadystatechange = function() {
 		var row = document.createElement("tr");
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("Id");
-		th.appendChild(node);
-		row.appendChild(th);
-		
-		var th = document.createElement("th");
 		var node = document.createTextNode("Nome");
 		th.appendChild(node);
 		row.appendChild(th);
@@ -42,14 +37,7 @@ xhttp.onreadystatechange = function() {
 		
 		for (var key in objectResponse) {
 			var row = document.createElement("tr");
-			
-			//id
-			var td = document.createElement("td");
-			td.ondblclick = Edit;
-			td.data = objectResponse[key].iddocente
-			var node = document.createTextNode(objectResponse[key].iddocente);
-			td.appendChild(node);
-			row.appendChild(td);
+			row.data = objectResponse[key].iddocente;
 			
 			//nome
 			var td = document.createElement("td");
@@ -77,13 +65,8 @@ xhttp.onreadystatechange = function() {
 			
 			//ruolo
 			var td = document.createElement("td");
-			td.data = "ruolo";
-			if(objectResponse[key].ruolo_idruolo == 1){
-			var node = document.createTextNode("Amministratore");
-			}
-			if(objectResponse[key].ruolo_idruolo == 2){
-			var node = document.createTextNode("Docente");
-			}
+			td.data = objectResponse[key].ruolo_idruolo;
+			var node = document.createTextNode(objectResponse[key].descrizione);
 			td.appendChild(node);
 			row.appendChild(td);
 			
@@ -117,15 +100,6 @@ function ReloadDump(){
 
 ReloadDump();
 
-
-function show(){
-	document.getElementById("pageHide").style.display = 'none';
-}
-show();
-function hide(){
-	document.getElementById("pageHide").style.display = 'block';
-}
-
 var xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
@@ -142,7 +116,8 @@ function Remove(){
 	Notify("Deleting [id="+ this.data +"]", false);
 }
 
-
+// THIS IS THE PERSONALIZATION FOR THE "dbclickEdit.js" FILE,
+// EditDB() can be personalized.
 var xhttp3 = new XMLHttpRequest();
 xhttp3.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
@@ -153,73 +128,8 @@ function EditDB(){
 	xhttp3.open("POST", "../controller/EDIT_docenti.php", true);
 	xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp3.setRequestHeader("Accept","application/json");
-	xhttp3.send("id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
-	Notify("Editing [id="+ this.parentElement.parentElement.childNodes[0].data +"&camp="+this.parentElement.data+"&edit="+this.value+"]", false);
-}
-
-function Revert(){
-	if( this.parentElement.querySelector("input").value == "" ){
-			this.parentElement.innerHTML = this.parentElement.querySelector("input").placeholder;
-		} else {
-			this.parentElement.innerHTML = this.parentElement.querySelector("input").value;
-		}
-}
-
-function Enter(e){
-	if(e.keyCode == 13){
-		this.blur();
-	}
-	if(e.keyCode === 27){
-		this.value = this.placeholder;
-		this.blur();
-	}
-}
-
-function Edit(){
-	
-	var camps = this.parentElement.childNodes;
-	if( camps[0] == this ) { return; }
-	if( camps[camps.length - 1] == this ) { return; }
-	if(this.querySelector("input") != null ) { return; }
-	var input = document.createElement("input")
-	input.placeholder = this.innerHTML;
-	input.onchange = EditDB;
-	input.onblur = Revert;
-	input.onkeydown = Enter;
-	this.innerHTML = "";
-	this.appendChild(input);
-	this.querySelector("input").focus();
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function Notify(msg, error){
-	
-	var p = document.createElement("p");
-	var txt = document.createTextNode(msg);
-	p.appendChild(txt);
-	
-	p.classList.add("notify");
-	p.style.left = "35px";
-	if(error) {p.style.backgroundColor = "red";}
-	
-	var high = document.getElementsByClassName("notify");
-	
-	p.style.top = window.innerHeight - 35 - ((high.length + 1) * 35) + "px";
-	
-	document.querySelector("header").appendChild(p);
-	
-	await sleep(5000);
-	
-	high[0].remove();
-	
-	var high = document.getElementsByClassName("notify");
-	for(i = 0; i < high.length; i++){
-		var h = high[i].style.top;
-		high[i].style.top = (Number(h.substring(0, h.length - 2)) + 35) + "px";
-	}
+	xhttp3.send("id="+ this.parentElement.parentElement.data +"&camp="+this.parentElement.data+"&edit="+this.value+"");
+	Notify("Editing [id="+ this.parentElement.parentElement.data +"&camp="+this.parentElement.data+"&edit="+this.value+"]", false);
 }
 
 function EditDBFull(){
@@ -237,8 +147,44 @@ function EditDBFull(){
 		xhttp4.send("id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"");
 		Notify("Full Editing [id="+this.parentElement.data+"&nome="+nome+"&cognome="+cognome+"&email="+email+"&ruolo="+ruolo+"]", false);
 		show();
+		
+		if(camps[9].value != "") {
+			
+		var camps = this.parentElement.childNodes;
+		xhttp5.open("POST", "../controller/resetPasswordDocente.php", true);
+		xhttp5.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhttp5.setRequestHeader("Accept","application/json");
+		xhttp5.send("pass="+camps[9].value+"&id="+this.parentElement.data+"");
+		Notify("Resetting Password...", false);
+		document.getElementById("Modal").remove();
+		show();
+		}
 }
 
+
+var xhttp6 = new XMLHttpRequest();
+xhttp6.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Ruoli fetched");
+	
+	var response = xhttp6.responseText;
+	var objectResponsee = JSON.parse(response);
+	
+	var select = document.getElementById("RuoliCB");
+	
+	for (var key in objectResponsee) {
+		
+		var option = document.createElement("option")
+		var node = document.createTextNode(objectResponsee[key].descrizione);
+		option.value = objectResponsee[key].idruolo;
+		option.appendChild(node);
+		select.appendChild( option );
+	}
+	
+	select.value = select.data;
+	
+	}
+}
 var xhttp5 = new XMLHttpRequest();
 xhttp5.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
@@ -266,14 +212,14 @@ function Modal(){
 	
 	var div = document.createElement("div");
 	div.id = "ModalInner";
-	div.data = camps[0].innerHTML;
+	div.data = this.parentElement.data;
 	divo.appendChild(div);
 	
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Nome:") );
 	var input = document.createElement("input");
 	input.data = "nome";
-	input.placeholder = camps[1].innerHTML;
+	input.placeholder = camps[0].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
@@ -282,7 +228,7 @@ function Modal(){
 	label.appendChild( document.createTextNode("Cognome:") );
 	var input = document.createElement("input");
 	input.data = "cognome";
-	input.placeholder = camps[2].innerHTML;
+	input.placeholder = camps[1].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
@@ -291,7 +237,7 @@ function Modal(){
 	label.appendChild( document.createTextNode("Email:") );
 	var input = document.createElement("input");
 	input.data = "email";
-	input.placeholder = camps[3].innerHTML;
+	input.placeholder = camps[2].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
@@ -299,18 +245,10 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Ruolo:") );
 	var select = document.createElement("select");
-	var option = document.createElement("option")
-	var node = document.createTextNode("Amministratore");
-	option.value = "1";
-	option.appendChild(node);
-	select.appendChild( option );
-	var option = document.createElement("option")
-	var node = document.createTextNode("Docente");
-	option.value = "2";
-	option.appendChild(node);
-	select.appendChild( option );
-	if(camps[4].innerHTML == "Amministratore") select.value = 1;
-	if(camps[4].innerHTML == "Docente") select.value = 2;
+	select.id = "RuoliCB";
+	select.data = camps[3].data;
+	xhttp6.open("GET", "../model/DUMP_ruoli.php", true);
+	xhttp6.send();
 	label.style.display = "none";
 	select.style.display = "none";
 	div.appendChild(label);
@@ -322,23 +260,9 @@ function Modal(){
 	var input = document.createElement("input");
 	input.type = "password";
 	input.placeholder = "Password";
-	var btnn = document.createElement("button");
-	btnn.appendChild( document.createTextNode("Reset") )
-	btnn.onclick = function(){
-		var camps = this.parentElement.childNodes;
-		xhttp5.open("POST", "../controller/resetPasswordDocente.php", true);
-		xhttp5.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhttp5.setRequestHeader("Accept","application/json");
-		xhttp5.send("pass="+camps[10].value+"&id="+this.parentElement.data+"");
-		Notify("Resetting Password...", false);
-		document.getElementById("Modal").remove();
-		show();
-	}
 	label.style.display = "none";
 	input.style.display = "none";
-	btnn.style.display = "none";
 	div.appendChild(label);
-	div.appendChild(btnn);
 	div.appendChild(input);
 	div.appendChild(br);
 	

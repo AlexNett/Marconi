@@ -2,7 +2,7 @@
 
 	include "../bin/connectDatabase.php";
 	
-	$result = $conn->prepare( "SELECT * FROM classe INNER JOIN annoscolastico ON classe.annoScolastico = annoscolastico.idannoscolastico ORDER BY sezione, classe, annoInizio DESC" );
+	$result = $conn->prepare( "SELECT * FROM ruolo" );
 	$result->execute();
 	
 	$array = array();

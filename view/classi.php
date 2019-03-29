@@ -34,7 +34,7 @@ include "../model/allowAdmin.php";
     <table>
     <tr><td><input type='text' name='classe' placeholder = 'Classe' size="20" required></td><td rowspan="4" ><button class="btnn" type="submit">Aggiungi Classe <i class="fas fa-users"></i></button></td></tr>
     <tr><td><input type='text' name='sezione' placeholder = 'Sezione' size="20" required></td></tr>
-    <tr><td><input type='text' name='annos' placeholder = 'Anno Scolastico' size="20" required></td></tr>
+    <tr><td> <select name='annos' id="AnnoScolasticoCB"></select></td></tr>
     </table>
     </form>
     <br><br>
@@ -46,6 +46,9 @@ include "../model/allowAdmin.php";
       </table>
     </div>
   </body>
+	<script src="../controller/showhide.js"></script>
+  <script src="../controller/notifySystem.js"></script>
+  <script src="../controller/dbclickEdit.js"></script>
   <script src="../controller/classi.js"></script>
 	<script src="../controller/main.js"></script>
 </html>

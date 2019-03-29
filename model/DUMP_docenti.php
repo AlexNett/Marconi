@@ -2,7 +2,7 @@
 
 	include "../bin/connectDatabase.php";
 	
-	$result = $conn->prepare( "SELECT * FROM docente" );
+	$result = $conn->prepare( "SELECT * FROM docente INNER JOIN ruolo ON docente.ruolo_idruolo = ruolo.idruolo" );
 	$result->execute();
 	
 	$array = array();
