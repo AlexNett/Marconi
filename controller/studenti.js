@@ -12,12 +12,7 @@ xhttp.onreadystatechange = function() {
 		}
 		
 		var row = document.createElement("tr");
-		
-		var th = document.createElement("th");
-		var node = document.createTextNode("Id");
-		th.appendChild(node);
-		row.appendChild(th);
-		
+	
 		var th = document.createElement("th");
 		var node = document.createTextNode("Nome");
 		th.appendChild(node);
@@ -33,18 +28,20 @@ xhttp.onreadystatechange = function() {
 		th.appendChild(node);
 		row.appendChild(th);
 		
+		var th = document.createElement("th");
+		var node = document.createTextNode("Classe");
+		th.appendChild(node);
+		row.appendChild(th);
+		
+		var th = document.createElement("th");
+		var node = document.createTextNode("Anno Scolastico");
+		th.appendChild(node);
+		row.appendChild(th);
+		
 		table.appendChild(row);
 		
 		for (var key in objectResponse) {
 			var row = document.createElement("tr");
-			
-			//id
-			var td = document.createElement("td");
-			td.ondblclick = Edit;
-			td.data = objectResponse[key].idstudente
-			var node = document.createTextNode(objectResponse[key].idstudente);
-			td.appendChild(node);
-			row.appendChild(td);
 			
 			//nome
 			var td = document.createElement("td");
@@ -67,6 +64,20 @@ xhttp.onreadystatechange = function() {
 			td.ondblclick = Edit;
 			td.data = "email";
 			var node = document.createTextNode(objectResponse[key].email);
+			td.appendChild(node);
+			row.appendChild(td);
+			
+			//classe
+			var td = document.createElement("td");
+			td.data = "classe";
+			var node = document.createTextNode(objectResponse[key].classe + objectResponse[key].sezione);
+			td.appendChild(node);
+			row.appendChild(td);
+			
+			//annoScolastico
+			var td = document.createElement("td");
+			td.data = "annoScolastico";
+			var node = document.createTextNode(objectResponse[key].annoInizio + " - " + objectResponse[key].annoFine);
 			td.appendChild(node);
 			row.appendChild(td);
 			
@@ -213,7 +224,7 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Nome:") );
 	var input = document.createElement("input");
-	input.placeholder = camps[1].innerHTML;
+	input.placeholder = camps[0].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
@@ -221,7 +232,7 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Cognome:") );
 	var input = document.createElement("input");
-	input.placeholder = camps[2].innerHTML;
+	input.placeholder = camps[1].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
@@ -229,10 +240,11 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Email:") );
 	var input = document.createElement("input");
-	input.placeholder = camps[3].innerHTML;
+	input.placeholder = camps[2].innerHTML;
 	div.appendChild(label);
 	div.appendChild(input);
 	div.appendChild(br);
+	
 	
 	var btnn = document.createElement("button");
 	btnn.appendChild( document.createTextNode("Annulla") );

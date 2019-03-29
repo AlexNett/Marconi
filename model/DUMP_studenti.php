@@ -2,7 +2,7 @@
 
 	include "../bin/connectDatabase.php";
 	
-	$result = $conn->prepare( "SELECT * FROM studente" );
+	$result = $conn->prepare( "SELECT * FROM studente INNER JOIN classe ON studente.classe_idclasse = classe.idclasse INNER JOIN annoscolastico ON classe.annoScolastico = annoscolastico.idannoscolastico" );
 	$result->execute();
 	
 	$array = array();

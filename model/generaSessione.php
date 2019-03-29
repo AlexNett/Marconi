@@ -1,6 +1,6 @@
 <?php
 
-	include "../bin/connectDatabase.php";
+	include "../bin/connectDatabaseMySQLi.php";
 	
 	//
 	// Generate the session id and date if there's none already in use

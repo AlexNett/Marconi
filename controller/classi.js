@@ -24,7 +24,7 @@ xhttp.onreadystatechange = function() {
 		row.appendChild(th);
 		
 		var th = document.createElement("th");
-		var node = document.createTextNode("AnnoScolastico");
+		var node = document.createTextNode("Anno Scolastico");
 		th.appendChild(node);
 		row.appendChild(th);
 		
@@ -287,11 +287,19 @@ xhttp8.onreadystatechange = function() {
 	xhttp6.send();
 }
 function NewYear(){
-	xhttp8.open("GET", "../controller/ADD_annoScolastico.php", true);
-	xhttp8.send();
-		
+	
 	document.getElementById("Modal").remove();
 	show();
+		
+	var camps = this.parentElement.childNodes;
+		
+	xhttp8.open("POST", "../controller/ADD_annoScolastico.php", true);
+	xhttp8.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhttp8.setRequestHeader("Accept","application/json");
+	var inizio = camps[4].value;
+	var fine = camps[6].value;
+		
+	xhttp8.send("inizio="+inizio+"&fine="+fine+"");
 }
 
 var xhttp7 = new XMLHttpRequest();
@@ -339,8 +347,25 @@ document.getElementById("NewAnno").onclick = function(){
 		
 		xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
 		xhttp6.send();
+		
 	};
 	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Inizio:") );
+	var input = document.createElement("input");
+	input.type = "date";
+	div.appendChild(label);
+	div.appendChild(input);
+	div.appendChild(br);
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Fine:") );
+	var input = document.createElement("input");
+	input.type = "date";
+	div.appendChild(label);
+	div.appendChild(input);
 	div.appendChild(br);
 	
 	var btnn = document.createElement("button");

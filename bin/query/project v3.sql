@@ -18,6 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+
+CREATE SCHEMA IF NOT EXISTS `quintab_project` DEFAULT CHARACTER SET utf8 ;
+USE `quintab_project` ;
+
 --
 -- Database: `quintab_project`
 --
