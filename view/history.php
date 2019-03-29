@@ -22,16 +22,18 @@ include "../model/header.php";
 
 
 <!-- MAIN HTML START -->
+
 <div id="tableDiv">
 <table id="dump">
 </table>
 </div>
+
 <!-- MAIN HTML END -->
 <footer id="footer">Made by ITISMeucci</footer>
 </div>
 
 
 	<script src="../controller/main.js"></script>
-	<script src="../controller/sessioneCronologia.js"></script>
+	<script src="../controller/sessioneHistory.js"></script>
   </body>
 </html>

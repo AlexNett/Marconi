@@ -1,11 +1,11 @@
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
+var xhttpt = new XMLHttpRequest();
+xhttpt.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
 		
-		var response = xhttp.responseText;
+		var response = xhttpt.responseText;
 		var objectResponse = JSON.parse(response);
 		
-		var table = document.getElementById("dump1");
+		var table = document.getElementById("dump");
 		
 		while (table.firstChild) {
 			table.removeChild(table.firstChild);
@@ -27,6 +27,7 @@ xhttp.onreadystatechange = function() {
 		var node = document.createTextNode("Data fine");
 		th.appendChild(node);
 		row.appendChild(th);
+		
 		
 		table.appendChild(row);
 		
@@ -57,8 +58,8 @@ xhttp.onreadystatechange = function() {
 };
 
 function ReloadDump(){
-	xhttp.open("GET", "../model/dump_cronologia.php", true);
-	xhttp.send();
+	xhttpt.open("GET", "../model/DUMP_sessioneHistory.php", true);
+	xhttpt.send();
 }
 
 ReloadDump();
@@ -68,7 +69,7 @@ function hide(){
 	document.getElementById("pageHide").style.display = 'block';
 }
 
-var xhttp2 = new XMLHttpRequest();
-xhttp2.onreadystatechange = function() {
+var xhttpt2 = new XMLHttpRequest();
+xhttpt2.onreadystatechange = function() {
 	ReloadDump();
 }
