@@ -34,14 +34,19 @@ include "../model/allowAdmin.php";
     <table>
     <tr><td><input type='text' name='classe' placeholder = 'Classe' size="20" required></td><td rowspan="4" ><button class="btnn" type="submit">Aggiungi Classe <i class="fas fa-users"></i></button></td></tr>
     <tr><td><input type='text' name='sezione' placeholder = 'Sezione' size="20" required></td></tr>
-    <tr><td> <select name='annos' id="AnnoScolasticoCB"></select></td></tr>
+    <tr><td> <select name='annos' class="AnnoScolasticoCB"></select></td></tr>
     </table>
     </form>
     <br><br>
     <!-- MAIN HTML END -->
     <footer id="footer">Made by ITISMeucci</footer>
     </div>
+	
     <div id = 'tableDiv'>
+	<div class="filter"> 
+	<select id="AnnoScolasticoCB" class="AnnoScolasticoCB"></select>
+	<button id="NewAnno">Manage Years</button>
+	</div>
       <table id="dump">
       </table>
     </div>

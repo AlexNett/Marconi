@@ -386,3 +386,8 @@ background-color: red;
 outline: none;
 border-color:red;
 }
+
+.filter{
+	position: absolute;
+	left: 70%;
+}

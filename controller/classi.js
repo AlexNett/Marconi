@@ -142,19 +142,29 @@ xhttp6.onreadystatechange = function() {
 	var response = xhttp6.responseText;
 	var objectResponsee = JSON.parse(response);
 	
-	var select = document.getElementById("AnnoScolasticoCB");
-	select.id = "";
+	var select = document.getElementsByClassName("AnnoScolasticoCB");
 	
-	for (var key in objectResponsee) {
+	
+	
+	for(var i = 0; i < select.length; i++){
 		
-		var option = document.createElement("option")
-		var node = document.createTextNode(objectResponsee[key].annoInizio + " - " + objectResponsee[key].annoFine);
-		option.value = objectResponsee[key].idannoscolastico;
-		option.appendChild(node);
-		select.appendChild( option );
+		while (select[i].firstChild) {
+			select[i].removeChild(select[i].firstChild);
+		}
+		
+		for (var key in objectResponsee) {
+			
+			var option = document.createElement("option")
+			var node = document.createTextNode(objectResponsee[key].annoInizio + " - " + objectResponsee[key].annoFine);
+			option.value = objectResponsee[key].idannoscolastico;
+			option.appendChild(node);
+			select[i].appendChild( option );
+		}
+		
+		select[i].value = select[i].data;
+	
 	}
 	
-	select.value = select.data;
 	
 	}
 }
@@ -202,7 +212,7 @@ function Modal(){
 	var label = document.createElement("p");
 	label.appendChild( document.createTextNode("Anno scolastico:") );
 	var select = document.createElement("select");
-	select.id = "AnnoScolasticoCB";
+	select.className = "AnnoScolasticoCB";
 	select.data = camps[2].data;
 	xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
 	xhttp6.send();
@@ -250,3 +260,107 @@ function Modal(){
 
 xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
 xhttp6.send();
+
+
+
+document.getElementById("AnnoScolasticoCB").onchange = function(){
+	if(this.value == null) {return;}
+	var table = document.getElementById("dump");
+	for( var i = 1; i < table.childNodes.length; i++){
+			table.childNodes[i].style.display = "table-row";
+	}
+	for( var i = 1; i < table.childNodes.length; i++){
+		var l = table.childNodes[i].childNodes[2].data;
+		if (l != this.value){
+			table.childNodes[i].style.display = "none";
+		}
+	}
+};
+
+var xhttp8 = new XMLHttpRequest();
+xhttp8.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("New Year");
+	}
+	ReloadDump();
+	xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
+	xhttp6.send();
+}
+function NewYear(){
+	xhttp8.open("GET", "../controller/ADD_annoScolastico.php", true);
+	xhttp8.send();
+		
+	document.getElementById("Modal").remove();
+	show();
+}
+
+var xhttp7 = new XMLHttpRequest();
+xhttp7.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+	Notify("Deleted Year");
+	}
+	ReloadDump();
+}
+document.getElementById("NewAnno").onclick = function(){
+	hide();
+	
+	var camps = this.parentElement.childNodes;
+	
+	var br = document.createElement("br");
+	
+	var divo = document.createElement("div");
+	divo.id = "Modal";
+	
+	var div = document.createElement("div");
+	div.id = "ModalInner";
+	div.data = this.parentElement.data;
+	divo.appendChild(div);
+	
+	var label = document.createElement("p");
+	label.appendChild( document.createTextNode("Anno scolastico:") );
+	var select = document.createElement("select");
+	select.className = "AnnoScolasticoCB";
+	select.data = camps[2].data;
+	xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
+	xhttp6.send();
+	div.appendChild(label);
+	div.appendChild(select);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Delete") );
+	btnn.onclick = function(){
+		xhttp7.open("POST", "../controller/REMOVE_annoScolastico.php", true);
+		xhttp7.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhttp7.setRequestHeader("Accept","application/json");
+		xhttp7.send("id="+this.parentElement.childNodes[1].value+"");
+		document.getElementById("Modal").remove();
+		show();
+		
+		xhttp6.open("GET", "../model/DUMP_annoScolastico.php", true);
+		xhttp6.send();
+	};
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Annulla") );
+	btnn.onclick = function(){
+		document.getElementById("Modal").remove();
+		show();
+	};
+	btnn.className = "btnn";
+	btnn.id = "annulla";
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	var btnn = document.createElement("button");
+	btnn.appendChild( document.createTextNode("Add") );
+	btnn.onclick = NewYear;
+	btnn.style.left = "57%";
+	btnn.className = "btnn";
+	div.appendChild(btnn);
+	div.appendChild(br);
+	
+	document.querySelector("header").appendChild(divo);
+};
