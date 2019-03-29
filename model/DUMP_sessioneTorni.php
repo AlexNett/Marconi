@@ -2,7 +2,7 @@
 
 	include "../bin/connectDatabase.php";
 	
-	$result = $conn->prepare( "SELECT * FROM sessione"); //WHERE deve essere l'ID del professore loggato in questo momento, qualcuno lo sistemi
+	$result = $conn->prepare( "SELECT m.idmacchina as idmacchina, g.idgruppo as idgruppo FROM gruppo g INNER JOIN macchina m ON g.macchina_idmacchina = m.idmacchina");
 	$result->execute();
 	
 	$array = array();
